@@ -55,6 +55,14 @@ Debe separar al menos:
 - documentos no financieros / administrativos
 - documentos inválidos o sin PDF útil
 
+## Regla de negocio clave dada por Andrés
+- Un `fin de contrato` normalmente significa que hubo una renovación anticipada, antes del vencimiento natural.
+- La ausencia de `fin de contrato` NO significa que el contrato siga vigente.
+- Muchas renovaciones ocurren simplemente porque vence el plazo natural y luego se crea un nuevo mutuo.
+- La secuencia de nombres importa. Ejemplo: `Contrato Mutuo Catalina Mesa`, luego `Contrato Mutuo Catalina Mesa 2`, `3`, `4`.
+- El primer contrato normalmente no lleva `1`; el segundo recién aparece como `2`.
+- Por lo tanto, no se debe interpretar cada PDF como obligación aislada. Hay que modelar `líneas de renovación` o `familias de contrato` por inversionista.
+
 ## Esquema base sugerido
 
 ### Tabla `documents`

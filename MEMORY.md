@@ -152,3 +152,10 @@ En esos casos:
 - El script clave es `firmaya_download_all.js`.
 - La descarga masiva organizada por inversionista quedó en `state/firmaya-by-investor-v2`.
 - Hay 2 documentos que aparecen en Firmaya pero no disparan descarga PDF (`error` y `NO VALIDO`), registrados en `_failures.json`.
+
+# Lógica de negocio importante para Firmaya / flujo de caja
+
+- Un `fin de contrato` normalmente significa renovación anticipada, no necesariamente cierre definitivo pagado.
+- La ausencia de `fin de contrato` NO significa que el mutuo siga vigente, porque muchas renovaciones se hacen creando otro mutuo al vencimiento natural.
+- La secuencia de nombres importa: `Contrato X`, luego `Contrato X 2`, `Contrato X 3`, etc. El primer contrato normalmente no lleva `1`.
+- La futura base debe agrupar contratos por `familia` o `línea de renovación` por inversionista, no tratarlos como PDFs aislados.
