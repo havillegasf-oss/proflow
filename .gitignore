@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Local environments
+.venv-audio/
+.playwright-*/
+.openclaw/
+claude/
+
+# Generated outputs
+state/
+file_*.json
+file_*.srt
+file_*.tsv
+file_*.txt
+file_*.vtt
