@@ -10,4 +10,4 @@ if [ -z "$1" ]; then
   exit 1
 fi
 source "$VENV/bin/activate"
-python -m whisper "$1" --language Spanish --task transcribe
+python -m whisper "$1" --model base --language Spanish --task transcribe
