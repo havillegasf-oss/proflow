@@ -1,0 +1,50 @@
+{
+  "VIVIANNE ANDREA CASTAING BURGOS|express|4": {
+    "status": "RENOVADO_VIGENTE",
+    "note": "Validado por Andrés: express renovado y vigente, no ha salido"
+  },
+  "VIVIANNE ANDREA CASTAING BURGOS|express|5": {
+    "status": "RENOVADO_VIGENTE",
+    "note": "Validado por Andrés: express renovado y vigente, no ha salido"
+  },
+  "VIVIANNE ANDREA CASTAING BURGOS|express|6": {
+    "status": "RENOVADO_VIGENTE",
+    "note": "Validado por Andrés: express renovado y vigente, no ha salido"
+  },
+  "VIVIANNE ANDREA CASTAING BURGOS|express|27": {
+    "status": "RENOVADO_VIGENTE",
+    "note": "Validado por Andrés: express renovado y vigente, no ha salido"
+  },
+  "VIVIANNE ANDREA CASTAING BURGOS|express|28": {
+    "status": "RENOVADO_VIGENTE",
+    "note": "Validado por Andrés: express renovado y vigente, no ha salido"
+  },
+  "VIVIANNE ANDREA CASTAING BURGOS|express|29": {
+    "status": "RENOVADO_VIGENTE",
+    "note": "Validado por Andrés: express renovado y vigente, no ha salido"
+  },
+  "CARLOS PATRICIO NUÑEZ ALISTE|express|6": {
+    "status": "VIGENTE",
+    "note": "Validado por Andrés: capital puesto ahora, sigue vigente"
+  },
+  "AMARA BEATRIZ ARROYO BRAVO|express|None": {
+    "status": "RENOVADO",
+    "note": "Validado por Andrés: empezó como express y luego pasó a mutuo más largo"
+  },
+  "AMELIA ISABEL SALAS ROSALES|express|None": {
+    "status": "LIQUIDADO",
+    "note": "Validado por Andrés: ya se le pagó y salió"
+  },
+  "AMELIA ISABEL SALAS ROSALES|mutuo|None": {
+    "status": "DESCARTAR",
+    "note": "Validado por Andrés: caso raro/error, ya salió y no debe contarse"
+  },
+  "LUCAS MARDONES OSSES|express|3": {
+    "status": "RENOVADO",
+    "note": "Validado por Andrés: renovó y se fue a largo plazo"
+  },
+  "SOFIA MACARENA JIMENO PARRAGUEZ|express|None": {
+    "status": "LIQUIDADO",
+    "note": "Validado por Andrés: ya se pagó y terminó"
+  }
+}
