@@ -130,9 +130,39 @@ Muchos documentos pueden estar:
 - reemplazados por otro contrato
 - cerrados por fin de contrato
 
+## Jerarquía de confianza actual
+
+### 1) Firmaya
+Fuente principal para:
+- existencia del documento
+- texto contractual
+- capital
+- tasa
+- plazo
+- tabla contractual
+- fin de contrato
+
+### 2) Google Sheet manual de Andrés
+Fuente de alta confianza (aprox. 95%) para:
+- estado operativo de pago
+- pagado / renovado / liquidado / por pagar
+- seguimiento manual del flujo
+
+Excepciones conocidas:
+- algunos nombres mal escritos
+- algunos montos en cero por renovaciones que no fueron limpiadas del flujo
+
+### 3) Carpeta auxiliar de mutuos
+Fuente auxiliar de respaldo para:
+- comprobantes
+- evidencia documental de pagos
+- versiones y borradores
+- contexto histórico
+
 ## Siguiente fase
 1. Clasificar masivamente los PDFs por tipo documental
 2. Extraer campos estructurados de contratos de mutuo
 3. Detectar relaciones entre contrato original y fin de contrato / renovación
-4. Cruzar luego con el archivo manual de pagos que entregará Andrés
-5. Marcar estado real de cada obligación para construir flujo de caja confiable
+4. Cruzar con Google Sheet como capa de estado de alta confianza
+5. Usar carpeta auxiliar como respaldo/evidencia para resolver ambigüedades
+6. Marcar estado real de cada obligación para construir flujo de caja confiable
