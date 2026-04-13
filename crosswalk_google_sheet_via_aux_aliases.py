@@ -8,6 +8,8 @@ BASE = Path('state/firmaya-by-investor-v2')
 TIMELINE = json.loads((BASE / '_family_sequence_timeline.json').read_text())
 PAY = json.loads((BASE / '_payment_evidence_by_contract.json').read_text())
 SHEET = json.loads((BASE / '_google_paid_contracts.json').read_text())
+ALIASES_FILE = Path('firmaya_manual_alias_overrides.json')
+ALIASES = json.loads(ALIASES_FILE.read_text()) if ALIASES_FILE.exists() else {}
 OUT = BASE / '_google_sheet_crosswalk_via_aux.json'
 SUMMARY = BASE / '_google_sheet_crosswalk_via_aux_summary.json'
 
@@ -22,13 +24,18 @@ def norm(s: str) -> str:
     return s
 
 
+def canon(s: str) -> str:
+    n = norm(s)
+    return norm(ALIASES.get(n, n))
+
+
 def alias_from_relpath(rel: str):
     parts = rel.split('/')
     if not parts:
         return ''
-    first = norm(parts[0])
+    first = canon(parts[0])
     if first in {norm(x) for x in SPECIAL_TOP} and len(parts) > 1:
-        second = norm(parts[1])
+        second = canon(parts[1])
         if second and not any(k in second for k in ['MUTUO', 'PAGO', 'PAGOS', 'EXPRESS', 'COMISION', 'SALDOS']):
             return second
     return first
@@ -62,7 +69,7 @@ for row in TIMELINE:
             continue
         if row.get('sequence_number') is not None and s.get('sequence') is not None and row['sequence_number'] != s['sequence']:
             continue
-        label = norm(s.get('label') or s.get('name_raw') or '')
+        label = canon(s.get('label') or s.get('name_raw') or '')
         if aliases and any(related(label, alias) for alias in aliases):
             matches.append(s)
 
