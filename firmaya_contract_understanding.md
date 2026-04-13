@@ -61,7 +61,9 @@ Debe separar al menos:
 - Muchas renovaciones ocurren simplemente porque vence el plazo natural y luego se crea un nuevo mutuo.
 - La secuencia de nombres importa. Ejemplo: `Contrato Mutuo Catalina Mesa`, luego `Contrato Mutuo Catalina Mesa 2`, `3`, `4`.
 - El primer contrato normalmente no lleva `1`; el segundo recién aparece como `2`.
-- Por lo tanto, no se debe interpretar cada PDF como obligación aislada. Hay que modelar `líneas de renovación` o `familias de contrato` por inversionista.
+- Muchas veces el capital no sale de la empresa entre contratos: se pagan intereses según la tabla del contrato vigente y luego se genera un nuevo contrato sobre el mismo capital, reiniciando el conteo de meses.
+- A veces el capital se mantiene igual; otras veces se aumenta.
+- Por lo tanto, no se debe interpretar cada PDF como obligación aislada. Hay que modelar `líneas de renovación` o `familias de contrato` por inversionista y además continuidad/rollover de capital.
 
 ## Esquema base sugerido
 
@@ -82,6 +84,8 @@ Debe separar al menos:
 - interes_mensual_monto
 - estado_documento
 - contrato_referencia
+- family_key
+- sequence_number
 - observaciones
 
 ### Tabla `payment_schedule`
@@ -93,6 +97,18 @@ Debe separar al menos:
 - periodo_texto
 - estado_pago (pendiente / pagado / por conciliar)
 - fuente_estado
+
+### Tabla `capital_lineage`
+- family_key
+- sequence_number
+- doc_id_firmaya
+- capital_inicial_contrato
+- capital_rolado_desde_contrato_anterior
+- aumento_capital
+- disminucion_capital
+- capital_vigente_estimado
+- evento (nuevo / renovación / rollover / aumento / cierre)
+- evidencia
 
 ### Tabla `investors`
 - nombre
