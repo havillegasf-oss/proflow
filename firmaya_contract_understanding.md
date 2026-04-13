@@ -63,7 +63,8 @@ Debe separar al menos:
 - El primer contrato normalmente no lleva `1`; el segundo recién aparece como `2`.
 - Muchas veces el capital no sale de la empresa entre contratos: se pagan intereses según la tabla del contrato vigente y luego se genera un nuevo contrato sobre el mismo capital, reiniciando el conteo de meses.
 - A veces el capital se mantiene igual; otras veces se aumenta.
-- Por lo tanto, no se debe interpretar cada PDF como obligación aislada. Hay que modelar `líneas de renovación` o `familias de contrato` por inversionista y además continuidad/rollover de capital.
+- `Mutuo` y `Mutuo Express` deben tratarse como líneas distintas. El mismo inversionista puede tener `Mutuo 2` y `Express 2`, y esos números no representan el mismo contrato.
+- Por lo tanto, no se debe interpretar cada PDF como obligación aislada. Hay que modelar `líneas de renovación` o `familias de contrato` por inversionista, separadas además por `track` (`mutuo` vs `express`), y continuidad/rollover de capital.
 
 ## Esquema base sugerido
 
@@ -100,6 +101,7 @@ Debe separar al menos:
 
 ### Tabla `capital_lineage`
 - family_key
+- contract_track
 - sequence_number
 - doc_id_firmaya
 - capital_inicial_contrato
