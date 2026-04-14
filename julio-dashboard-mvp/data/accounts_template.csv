@@ -1,0 +1,6 @@
+name,institution,currency,balance,status,statusLabel
+Chase principal,Chase,CLP,18450000,OK,Disponible
+Santander Office Banking,Santander,CLP,6240000,PENDING,Con fondos en clearing
+Caja operativa,Interna,CLP,3120000,OK,Disponible
+NIA,NIA,CLP,0,OK,Por definir
+Stripe,Stripe,CLP,0,PENDING,Por conciliar

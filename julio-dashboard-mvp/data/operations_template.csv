@@ -1,0 +1,5 @@
+date,type,description,amount,account,status
+2026-04-14,Compra cupo,Compra de cupo USD cliente A,1900000,Chase principal,Ejecutada
+2026-04-14,Abono cliente,Liquidación cliente B,2450000,Santander Office Banking,Pendiente liberación
+2026-04-14,Procesamiento,Movimiento NIA,1200000,NIA,Procesando
+2026-04-14,Procesamiento,Movimiento Stripe,980000,Stripe,Por conciliar
