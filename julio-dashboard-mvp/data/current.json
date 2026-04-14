@@ -1,0 +1,87 @@
+{
+  "today": "2026-04-14",
+  "organization": "ProFlow / La Caja Chica",
+  "accounts": [
+    {
+      "name": "Chase principal",
+      "institution": "Chase",
+      "currency": "CLP",
+      "balance": 18450000,
+      "status": "OK",
+      "statusLabel": "Disponible"
+    },
+    {
+      "name": "Santander Office Banking",
+      "institution": "Santander",
+      "currency": "CLP",
+      "balance": 6240000,
+      "status": "PENDING",
+      "statusLabel": "Con fondos en clearing"
+    },
+    {
+      "name": "Caja operativa",
+      "institution": "Interna",
+      "currency": "CLP",
+      "balance": 3120000,
+      "status": "OK",
+      "statusLabel": "Disponible"
+    }
+  ],
+  "settlements": [
+    {
+      "source": "Office Banking lote 14-04",
+      "amount": 4800000,
+      "releaseDate": "2026-04-26"
+    },
+    {
+      "source": "Office Banking lote 10-04",
+      "amount": 1730000,
+      "releaseDate": "2026-04-22"
+    },
+    {
+      "source": "Transferencia en tránsito Chase",
+      "amount": 950000,
+      "releaseDate": "2026-04-15"
+    }
+  ],
+  "operations": [
+    {
+      "date": "2026-04-14",
+      "type": "Compra cupo",
+      "description": "Compra de cupo USD cliente A",
+      "amount": 1900000,
+      "account": "Chase principal",
+      "status": "Ejecutada"
+    },
+    {
+      "date": "2026-04-14",
+      "type": "Abono cliente",
+      "description": "Liquidación cliente B",
+      "amount": 2450000,
+      "account": "Santander Office Banking",
+      "status": "Pendiente liberación"
+    },
+    {
+      "date": "2026-04-14",
+      "type": "Transferencia interna",
+      "description": "Paso a caja operativa",
+      "amount": 850000,
+      "account": "Caja operativa",
+      "status": "Ejecutada"
+    },
+    {
+      "date": "2026-04-13",
+      "type": "Compra cupo",
+      "description": "Compra de cupo USD cliente C",
+      "amount": 1600000,
+      "account": "Chase principal",
+      "status": "Ejecutada"
+    }
+  ],
+  "notes": [
+    "Este MVP es de solo visualización para inversionista.",
+    "Los montos de Office Banking pueden quedar retenidos y liberarse con una lógica típica de 12 días.",
+    "La fuente inicial puede ser actualizada manualmente en data/current.json mientras conectamos fuentes reales.",
+    "La siguiente iteración puede separar saldos disponibles, saldos retenidos y posición por operación/familia." 
+  ]
+}
