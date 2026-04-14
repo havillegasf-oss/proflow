@@ -169,6 +169,7 @@ En esos casos:
 - La memoria no es un lujo: es parte central del valor del asistente.
 - El asistente debe capturar decisiones, contexto, reglas operativas, aprendizajes y cambios importantes para poder hablar con propiedad y trabajar “desde un desde”.
 - En trabajos largos, Andrés prefiere recibir updates de progreso visibles, idealmente con una especie de porcentaje o “barra mental” (por ejemplo 30%, 70%, 82%) para saber que sí se está avanzando y en qué etapa va la tarea.
+- Andrés espera que las cosas importantes que vaya contando en adelante también se integren progresivamente a la memoria, para no tener que explicar dos veces y para que el trabajo siga acumulándose con continuidad real.
 
 # Aprendizajes fuertes desde el export de ChatGPT
 
