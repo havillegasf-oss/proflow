@@ -50,7 +50,7 @@ function parseCsv(text) {
     } else if ((ch === '\n' || ch === '\r') && !inQuotes) {
       if (ch === '\r' && next === '\n') i++;
       row.push(value);
-      if (row.some(cell => cell !== '')) rows.push(row);
+      rows.push(row);
       row = [];
       value = '';
     } else {
@@ -60,16 +60,28 @@ function parseCsv(text) {
 
   if (value.length || row.length) {
     row.push(value);
-    if (row.some(cell => cell !== '')) rows.push(row);
+    rows.push(row);
   }
 
-  if (!rows.length) return [];
-  const headers = rows[0].map((h) => h.trim());
-  return rows.slice(1).map((r) => {
+  const normalizedRows = rows
+    .map((r) => r.map((cell) => (cell || '').trim()))
+    .filter((r) => r.some((cell) => cell !== ''));
+
+  if (!normalizedRows.length) return [];
+
+  const headerRowIndex = normalizedRows.findIndex((r) => r.filter(Boolean).length >= 2);
+  if (headerRowIndex === -1) return [];
+
+  const headerRow = normalizedRows[headerRowIndex];
+  const firstHeaderCol = headerRow.findIndex(Boolean);
+  const headers = headerRow.slice(firstHeaderCol).map((h) => h.trim());
+
+  return normalizedRows.slice(headerRowIndex + 1).map((r) => {
+    const trimmed = r.slice(firstHeaderCol);
     const obj = {};
-    headers.forEach((h, idx) => obj[h] = (r[idx] || '').trim());
+    headers.forEach((h, idx) => obj[h] = (trimmed[idx] || '').trim());
     return obj;
-  });
+  }).filter((obj) => Object.values(obj).some(Boolean));
 }
 
 function num(value) {
@@ -127,6 +139,7 @@ async function main() {
   fs.writeFileSync(OUTPUT, JSON.stringify(payload, null, 2));
   console.log(`OK: ${OUTPUT}`);
   console.log(`accounts=${accounts.length} settlements=${settlements.length} operations=${operations.length}`);
+  process.exit(0);
 }
 
 main().catch((err) => {

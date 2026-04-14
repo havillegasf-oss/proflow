@@ -25,23 +25,42 @@
       "balance": 3120000,
       "status": "OK",
       "statusLabel": "Disponible"
+    },
+    {
+      "name": "NIA",
+      "institution": "NIA",
+      "currency": "CLP",
+      "balance": 0,
+      "status": "OK",
+      "statusLabel": "Por definir"
+    },
+    {
+      "name": "Stripe",
+      "institution": "Stripe",
+      "currency": "CLP",
+      "balance": 0,
+      "status": "PENDING",
+      "statusLabel": "Por conciliar"
     }
   ],
   "settlements": [
     {
       "source": "Office Banking lote 14-04",
       "amount": 4800000,
-      "releaseDate": "2026-04-26"
+      "releaseDate": "2026-04-26",
+      "notes": "Liberación tipo 12 días"
     },
     {
       "source": "Office Banking lote 10-04",
       "amount": 1730000,
-      "releaseDate": "2026-04-22"
+      "releaseDate": "2026-04-22",
+      "notes": "Lote anterior"
     },
     {
-      "source": "Transferencia en tránsito Chase",
+      "source": "Stripe clearing",
       "amount": 950000,
-      "releaseDate": "2026-04-15"
+      "releaseDate": "2026-04-15",
+      "notes": "Por conciliar"
     }
   ],
   "operations": [
@@ -63,25 +82,23 @@
     },
     {
       "date": "2026-04-14",
-      "type": "Transferencia interna",
-      "description": "Paso a caja operativa",
-      "amount": 850000,
-      "account": "Caja operativa",
-      "status": "Ejecutada"
+      "type": "Procesamiento",
+      "description": "Movimiento NIA",
+      "amount": 1200000,
+      "account": "NIA",
+      "status": "Procesando"
     },
     {
-      "date": "2026-04-13",
-      "type": "Compra cupo",
-      "description": "Compra de cupo USD cliente C",
-      "amount": 1600000,
-      "account": "Chase principal",
-      "status": "Ejecutada"
+      "date": "2026-04-14",
+      "type": "Procesamiento",
+      "description": "Movimiento Stripe",
+      "amount": 980000,
+      "account": "Stripe",
+      "status": "Por conciliar"
     }
   ],
   "notes": [
-    "Este MVP es de solo visualización para inversionista.",
-    "Los montos de Office Banking pueden quedar retenidos y liberarse con una lógica típica de 12 días.",
-    "La fuente inicial puede ser actualizada manualmente en data/current.json mientras conectamos fuentes reales.",
-    "La siguiente iteración puede separar saldos disponibles, saldos retenidos y posición por operación/familia." 
+    "Datos sincronizados desde Google Sheets para demo.",
+    "Fuente temporal operativa mientras se conectan fuentes más automáticas."
   ]
 }

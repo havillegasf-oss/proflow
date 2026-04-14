@@ -5,6 +5,7 @@
   "description": "MVP read-only dashboard para visualización de liquidez de ProFlow/La Caja Chica",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "sync:sheet": "node sync_from_google_sheets.js"
   }
 }
