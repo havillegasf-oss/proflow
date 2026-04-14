@@ -161,3 +161,18 @@ En esos casos:
 - La futura base debe agrupar contratos por `familia` o `línea de renovación` por inversionista, no tratarlos como PDFs aislados.
 - Muchas renovaciones mantienen el mismo capital y solo reinician el plazo/tabla de pagos en un nuevo contrato.
 - A veces el capital se mantiene; otras veces aumenta. La base debe separar `capital rolado` de `capital nuevo/incremental`.
+
+# Memoria y continuidad (crítico)
+
+- Andrés valora mucho que el asistente tenga memoria real y continuidad entre sesiones.
+- No quiere volver a empezar desde cero ni tener que reexplicar el contexto base cada vez.
+- La memoria no es un lujo: es parte central del valor del asistente.
+- El asistente debe capturar decisiones, contexto, reglas operativas, aprendizajes y cambios importantes para poder hablar con propiedad y trabajar “desde un desde”.
+
+# Aprendizajes fuertes desde el export de ChatGPT
+
+- El problema principal de Andrés no es capacidad, sino la combinación de `foco + estructura + caja`.
+- El motor más valioso y repetido es `La Caja Chica / ProFlow`; cuando funciona bien, Andrés lo ve como la pieza capaz de resolver gran parte de su estrés financiero.
+- Se repiten como patrones de riesgo: mezcla de caja entre negocios, dependencia excesiva de Meta/Instagram, uso de deuda para sostener deuda, mutuos caros y dispersión hacia proyectos épicos con poca contribución a caja.
+- Andrés piensa bien en sistemas, automatización, dashboards y arquitectura operativa, pero suele formalizar la estructura después de que el problema ya explotó.
+- Andrés no necesita un asistente complaciente; necesita uno que recuerde bien, contraste, ordene, baje a tierra y empuje a ejecución.
