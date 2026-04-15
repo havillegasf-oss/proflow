@@ -148,6 +148,11 @@ function loadDashboardData() {
       Number(availableByCurrency[currency] || 0) + Number(pendingByCurrency[currency] || 0)
     ])
   );
+  const fxRateUsdClp = Number(raw.fxRateUsdClp || 0);
+  const clpAsUsd = fxRateUsdClp > 0 ? Number(availableByCurrency.CLP || 0) / fxRateUsdClp : 0;
+  const usdAvailable = Number(availableByCurrency.USD || 0);
+  const usdRetained = Number(pendingByCurrency.USD || 0);
+  const totalLiquidityUsd = clpAsUsd + usdAvailable + usdRetained;
 
   return {
     ...raw,
@@ -172,24 +177,27 @@ function loadDashboardData() {
           title: 'USD disponible',
           kind: 'currency',
           currency: 'USD',
-          value: Number(availableByCurrency.USD || 0),
-          detail: 'Saldo USD ya líquido'
+          value: usdAvailable,
+          detail: 'Santander USD + Chase USD'
         },
         {
           title: 'USD retenido',
           kind: 'currency',
           currency: 'USD',
-          value: Number(pendingByCurrency.USD || 0),
-          detail: 'Santander + reserva NMI'
+          value: usdRetained,
+          detail: 'Santander retenido + reserva NMI'
         },
         {
-          title: 'USD contable total',
+          title: 'Liquidez total USD',
           kind: 'currency',
           currency: 'USD',
-          value: Number(visibilityByCurrency.USD || 0),
-          detail: 'Disponible + retenido'
+          value: totalLiquidityUsd,
+          detail: fxRateUsdClp > 0 ? `Incluye CLP convertido a ${fxRateUsdClp.toFixed(2)}` : 'Disponible + retenido'
         }
       ],
+      fxRateUsdClp,
+      clpAsUsd,
+      totalLiquidityUsd,
       operationsTodayCount: operationsToday.length,
       operationsTodayAmount: operationsToday.reduce((sum, op) => sum + Number(op.amount || 0), 0)
     },
