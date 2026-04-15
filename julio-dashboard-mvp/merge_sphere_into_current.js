@@ -46,6 +46,8 @@ function main() {
     status: row.nonSettledNet > 0 ? 'Con parte no liquidada' : 'Settled'
   }));
 
+  current.organization = 'ProFlow';
+
   const sphereNotes = [
     `Sphere Batch History 04/01-04/14: ${batchRows.length || 0} batches visibles, ${totalTransactions || 0} transacciones y ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(totalBatchVolume)} en volumen capturado.`,
     `Sphere Deposit History mismo corte: ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Number(paymentSummary.depositsAmount || 0))} en depósitos, ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Math.abs(Number(paymentSummary.debitsAmount || 0)))} en débitos/ajustes y neto ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Number(paymentSummary.netDeposit || 0))}.`,
@@ -82,8 +84,16 @@ function main() {
         title: 'Lo que ya prueba hoy',
         bullets: [
           'Hay volumen real, no una historia teórica: batches diarios, transacciones visibles y depósitos observables.',
-          'El sistema ya muestra recurrencia operativa y no solo eventos aislados.',
-          'La liquidez visible puede contarse junto a la capacidad de producir flujo.'
+          'La Caja Chica sigue viva como unidad operativa, pero ProFlow nace como marca paraguas para ordenar y escalar.',
+          'La liquidez visible puede contarse junto a la capacidad de producir flujo y expansión.'
+        ]
+      },
+      {
+        title: 'Por qué nace ProFlow',
+        bullets: [
+          'La Caja Chica fue interpretada como cash advance en Instagram Ads y eso volvió inestable el crecimiento pagado.',
+          'ProFlow nace para tener una marca más escalable, más exportable y menos frágil frente a plataformas y expansión regional.',
+          'La lectura correcta no es reemplazar La Caja Chica, sino presentarla como La Caja Chica by ProFlow dentro de una visión más grande.'
         ]
       },
       {

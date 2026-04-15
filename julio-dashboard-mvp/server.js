@@ -156,16 +156,16 @@ function loginPage(error = '') {
 </head>
 <body class="login-body">
   <div class="login-card">
-    <div class="eyebrow">ProFlow / La Caja Chica</div>
-    <h1>Acceso inversionista</h1>
-    <p>Visualizador de liquidez y operaciones.</p>
+    <div class="eyebrow">ProFlow</div>
+    <h1>La Caja Chica by ProFlow</h1>
+    <p>Visualizador de liquidez, operación y capacidad de escala.</p>
     ${error ? `<div class="error-box">${error}</div>` : ''}
     <form method="post" action="/login" class="login-form">
       <label>Usuario<input name="username" autocomplete="username" required /></label>
       <label>Clave<input name="password" type="password" autocomplete="current-password" required /></label>
       <button type="submit">Ingresar</button>
     </form>
-    <div class="demo-note">MVP demo. Seguridad básica solo para presentación inicial.</div>
+    <div class="demo-note">MVP demo. ProFlow es la marca paraguas; La Caja Chica queda como unidad operativa activa.</div>
   </div>
 </body>
 </html>`;
@@ -183,8 +183,9 @@ function dashboardPage() {
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">ProFlow / La Caja Chica</div>
-      <h1>Dashboard de liquidez</h1>
+      <div class="eyebrow">ProFlow</div>
+      <h1>La Caja Chica by ProFlow</h1>
+      <div class="muted">Liquidez, operación y narrativa de escala</div>
     </div>
     <div class="topbar-actions">
       <span class="badge">MVP inversionista</span>
