@@ -6,6 +6,7 @@ async function loadDashboard() {
   }
   const data = await res.json();
   renderHero(data);
+  renderMachine(data.machine || null);
   renderAccounts(data.accounts || [], data.today);
   renderSettlements(data.settlements || []);
   renderOperations(data.operations || []);
@@ -32,6 +33,48 @@ function renderHero(data) {
       <div class="metric-detail">${detail}</div>
     </div>
   `).join('');
+}
+
+function metricValue(metric) {
+  if (!metric) return '-';
+  if (metric.kind === 'currency') return clp(metric.value);
+  if (metric.kind === 'percent') return `${Number(metric.value || 0).toFixed(1)}%`;
+  return String(metric.value ?? '-');
+}
+
+function renderMachine(machine) {
+  const container = document.getElementById('machine-panel');
+  if (!container) return;
+  if (!machine || !machine.metrics || !machine.metrics.length) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const notes = machine.notes || [];
+  container.innerHTML = `
+    <div class="panel machine-panel">
+      <div class="section-title-row">
+        <div>
+          <h2>${machine.title || 'Máquina de dinero'}</h2>
+          <div class="muted">${machine.periodLabel || ''}</div>
+        </div>
+      </div>
+      <div class="cards-grid machine-grid">
+        ${machine.metrics.map((metric) => `
+          <div class="card metric-card compact">
+            <div class="metric-title">${metric.label}</div>
+            <div class="metric-value">${metricValue(metric)}</div>
+            <div class="metric-detail">${metric.detail || ''}</div>
+          </div>
+        `).join('')}
+      </div>
+      ${notes.length ? `
+        <ul class="notes-list machine-notes">
+          ${notes.map((note) => `<li>${note}</li>`).join('')}
+        </ul>
+      ` : ''}
+    </div>
+  `;
 }
 
 function renderAccounts(accounts, today) {

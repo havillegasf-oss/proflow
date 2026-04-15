@@ -183,5 +183,51 @@
     "Sphere quedó conectado vía navegador autenticado y extractores locales; Transaction Search sigue pendiente de filtro útil, pero Batch History + Deposit History ya aportan señal real al MVP.",
     "Datos sincronizados desde Google Sheets para demo.",
     "Fuente temporal operativa mientras se conectan fuentes más automáticas."
-  ]
+  ],
+  "machine": {
+    "title": "Máquina de dinero, señal operativa real",
+    "periodLabel": "Sphere / Smart Global Advisory, corte 01-04 al 14-04",
+    "metrics": [
+      {
+        "label": "Volumen procesado",
+        "value": 102183,
+        "kind": "currency",
+        "detail": "Batch History visible del período"
+      },
+      {
+        "label": "Transacciones",
+        "value": 45,
+        "kind": "number",
+        "detail": "Operaciones visibles en batches"
+      },
+      {
+        "label": "Batches",
+        "value": 10,
+        "kind": "number",
+        "detail": "Lotes procesados visibles"
+      },
+      {
+        "label": "Ticket promedio",
+        "value": 2270.733333333333,
+        "kind": "currency",
+        "detail": "Promedio por transacción"
+      },
+      {
+        "label": "Depósito neto",
+        "value": 36897.7,
+        "kind": "currency",
+        "detail": "Neto visto en Deposit History"
+      },
+      {
+        "label": "Débitos / ajustes",
+        "value": 67285.3,
+        "kind": "currency",
+        "detail": "Cargo y ajuste visto en Deposit History"
+      }
+    ],
+    "notes": [
+      "Esto no prueba por sí solo rentabilidad final de La Caja Chica, pero sí demuestra tracción operativa, volumen y capacidad de procesamiento real.",
+      "La siguiente capa es conectar rentabilidad real de Caja Chica encima de esta base operativa, no reemplazarla."
+    ]
+  }
 }

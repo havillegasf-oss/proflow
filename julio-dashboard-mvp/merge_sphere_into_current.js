@@ -31,8 +31,13 @@ function main() {
   const current = readJson(currentPath);
   const batch = readJson(batchPath);
   const payment = readJson(paymentPath);
+  const batchRows = batch.rows || [];
+  const paymentSummary = payment.summary || {};
+  const totalBatchVolume = batchRows.reduce((sum, row) => sum + Number(row.totalNet || 0), 0);
+  const totalTransactions = batchRows.reduce((sum, row) => sum + Number(row.transactionCount || 0), 0);
+  const avgTicket = totalTransactions ? totalBatchVolume / totalTransactions : 0;
 
-  const sphereOps = (batch.rows || []).map((row) => ({
+  const sphereOps = batchRows.map((row) => ({
     date: toIsoDate(row.reportDate),
     type: 'Batch Sphere',
     description: `Batch ${row.batchNumber} | Terminal ${row.terminalNumber} | ${row.transactionCount} transacciones`,
@@ -42,10 +47,27 @@ function main() {
   }));
 
   const sphereNotes = [
-    `Sphere Batch History 04/01-04/14: ${batch.rows?.length || 0} batches visibles, ${batch.rows?.reduce((sum, row) => sum + Number(row.transactionCount || 0), 0) || 0} transacciones y ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format((batch.rows || []).reduce((sum, row) => sum + Number(row.totalNet || 0), 0))} en volumen capturado.`,
-    `Sphere Deposit History mismo corte: ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Number(payment.summary?.depositsAmount || 0))} en depósitos, ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Math.abs(Number(payment.summary?.debitsAmount || 0)))} en débitos/ajustes y neto ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Number(payment.summary?.netDeposit || 0))}.`,
+    `Sphere Batch History 04/01-04/14: ${batchRows.length || 0} batches visibles, ${totalTransactions || 0} transacciones y ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(totalBatchVolume)} en volumen capturado.`,
+    `Sphere Deposit History mismo corte: ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Number(paymentSummary.depositsAmount || 0))} en depósitos, ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Math.abs(Number(paymentSummary.debitsAmount || 0)))} en débitos/ajustes y neto ${new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Number(paymentSummary.netDeposit || 0))}.`,
     'Sphere quedó conectado vía navegador autenticado y extractores locales; Transaction Search sigue pendiente de filtro útil, pero Batch History + Deposit History ya aportan señal real al MVP.'
   ];
+
+  current.machine = {
+    title: 'Máquina de dinero, señal operativa real',
+    periodLabel: 'Sphere / Smart Global Advisory, corte 01-04 al 14-04',
+    metrics: [
+      { label: 'Volumen procesado', value: totalBatchVolume, kind: 'currency', detail: 'Batch History visible del período' },
+      { label: 'Transacciones', value: totalTransactions, kind: 'number', detail: 'Operaciones visibles en batches' },
+      { label: 'Batches', value: batchRows.length, kind: 'number', detail: 'Lotes procesados visibles' },
+      { label: 'Ticket promedio', value: avgTicket, kind: 'currency', detail: 'Promedio por transacción' },
+      { label: 'Depósito neto', value: Number(paymentSummary.netDeposit || 0), kind: 'currency', detail: 'Neto visto en Deposit History' },
+      { label: 'Débitos / ajustes', value: Math.abs(Number(paymentSummary.debitsAmount || 0)), kind: 'currency', detail: 'Cargo y ajuste visto en Deposit History' }
+    ],
+    notes: [
+      'Esto no prueba por sí solo rentabilidad final de La Caja Chica, pero sí demuestra tracción operativa, volumen y capacidad de procesamiento real.',
+      'La siguiente capa es conectar rentabilidad real de Caja Chica encima de esta base operativa, no reemplazarla.'
+    ]
+  };
 
   current.operations = uniqueBy([
     ...sphereOps,
