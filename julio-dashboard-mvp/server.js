@@ -159,7 +159,7 @@ function loginPage(error = '') {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ProFlow - Acceso inversionista</title>
+  <title>ProFlow</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body class="login-body">
@@ -170,7 +170,7 @@ function loginPage(error = '') {
         <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
       </div>
     </div>
-    <h1>Acceso inversionista</h1>
+    <h1>Accesos</h1>
     <p>Visualizador de liquidez, operación y capacidad de escala.</p>
     ${error ? `<div class="error-box">${error}</div>` : ''}
     <form method="post" action="/login" class="login-form">
@@ -178,7 +178,6 @@ function loginPage(error = '') {
       <label>Clave<input name="password" type="password" autocomplete="current-password" required /></label>
       <button type="submit">Ingresar</button>
     </form>
-    <div class="demo-note">MVP demo. Visualizador privado para presentar operación, liquidez y capacidad de escala.</div>
   </div>
 </body>
 </html>`;
