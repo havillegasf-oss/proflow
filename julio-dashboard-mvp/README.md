@@ -19,6 +19,13 @@ npm start
 Luego abrir:
 - `http://localhost:3080`
 
+## Listo para deploy fuera del Mac mini
+Quedó agregado:
+- `Dockerfile`
+- `.dockerignore`
+
+Con eso se puede subir rápido a una plataforma tipo Render/Railway o a un VPS con Docker, sin depender del Mac mini.
+
 ## Credenciales demo por defecto
 - usuario: `julio`
 - clave: `proflow2026`
