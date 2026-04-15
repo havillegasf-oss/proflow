@@ -28,6 +28,48 @@ h1, h2, h3 { color: #0f172a; }
   padding: 28px 32px 12px;
 }
 
+.brand-lockup {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.topbar-lockup {
+  max-width: 420px;
+}
+
+.login-lockup {
+  max-width: 420px;
+  margin-bottom: 18px;
+}
+
+.brand-logo {
+  display: block;
+  height: auto;
+}
+
+.proflow-logo {
+  width: min(340px, 100%);
+}
+
+.caja-logo {
+  width: min(260px, 100%);
+}
+
+.subbrand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.subbrand-text {
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
 .topbar-actions { display: flex; gap: 14px; align-items: center; }
 .container {
   padding: 0 32px 40px;
@@ -187,4 +229,5 @@ th { color: var(--muted); font-weight: 600; }
 @media (max-width: 960px) {
   .two-col { grid-template-columns: 1fr; }
   .topbar, .container { padding-left: 16px; padding-right: 16px; }
+  .topbar { align-items: flex-start; }
 }

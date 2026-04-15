@@ -92,6 +92,14 @@ function sendFile(res, filePath, contentType) {
   });
 }
 
+function assetContentType(filePath) {
+  if (filePath.endsWith('.png')) return 'image/png';
+  if (filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) return 'image/jpeg';
+  if (filePath.endsWith('.webp')) return 'image/webp';
+  if (filePath.endsWith('.svg')) return 'image/svg+xml';
+  return 'application/octet-stream';
+}
+
 function readBody(req) {
   return new Promise((resolve, reject) => {
     let data = '';
@@ -156,6 +164,13 @@ function loginPage(error = '') {
 </head>
 <body class="login-body">
   <div class="login-card">
+    <div class="brand-lockup login-lockup">
+      <img src="/assets/proflow-latam.png" alt="ProFlow Latam" class="brand-logo proflow-logo" />
+      <div class="subbrand-row">
+        <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
+        <span class="subbrand-text">by ProFlow</span>
+      </div>
+    </div>
     <div class="eyebrow">ProFlow</div>
     <h1>La Caja Chica by ProFlow</h1>
     <p>Visualizador de liquidez, operación y capacidad de escala.</p>
@@ -183,6 +198,13 @@ function dashboardPage() {
 <body>
   <header class="topbar">
     <div>
+      <div class="brand-lockup topbar-lockup">
+        <img src="/assets/proflow-latam.png" alt="ProFlow Latam" class="brand-logo proflow-logo" />
+        <div class="subbrand-row">
+          <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
+          <span class="subbrand-text">by ProFlow</span>
+        </div>
+      </div>
       <div class="eyebrow">ProFlow</div>
       <h1>La Caja Chica by ProFlow</h1>
       <div class="muted">Liquidez, operación y narrativa de escala</div>
@@ -238,6 +260,9 @@ const server = http.createServer(async (req, res) => {
   }
   if (req.method === 'GET' && url.pathname === '/app.js') {
     return sendFile(res, path.join(__dirname, 'public', 'app.js'), 'application/javascript; charset=utf-8');
+  }
+  if (req.method === 'GET' && url.pathname.startsWith('/assets/')) {
+    return sendFile(res, path.join(__dirname, 'public', url.pathname), assetContentType(url.pathname));
   }
   if (req.method === 'GET' && url.pathname === '/login') {
     return sendHtml(res, loginPage());
