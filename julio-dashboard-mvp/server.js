@@ -197,6 +197,7 @@ function dashboardPage() {
 
     <section id="machine-panel"></section>
     <section id="story-panel"></section>
+    <section id="profitability-panel"></section>
 
     <section class="panel two-col">
       <div>

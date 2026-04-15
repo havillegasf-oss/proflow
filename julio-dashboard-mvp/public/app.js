@@ -8,6 +8,7 @@ async function loadDashboard() {
   renderHero(data);
   renderMachine(data.machine || null);
   renderStory(data.story || null);
+  renderProfitability(data.profitability || null);
   renderAccounts(data.accounts || [], data.today);
   renderSettlements(data.settlements || []);
   renderOperations(data.operations || []);
@@ -108,6 +109,49 @@ function renderStory(story) {
       ${story.sections?.length ? `
         <div class="story-sections">
           ${story.sections.map((section) => `
+            <div class="story-block">
+              <h3>${section.title}</h3>
+              <ul class="notes-list">
+                ${(section.bullets || []).map((bullet) => `<li>${bullet}</li>`).join('')}
+              </ul>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function renderProfitability(profitability) {
+  const container = document.getElementById('profitability-panel');
+  if (!container) return;
+  if (!profitability || (!profitability.metrics?.length && !profitability.sections?.length)) {
+    container.innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="panel story-panel">
+      <div class="section-title-row">
+        <div>
+          <h2>${profitability.title || 'Rentabilidad Caja Chica'}</h2>
+          <div class="muted">${profitability.subtitle || ''}</div>
+        </div>
+      </div>
+      ${profitability.metrics?.length ? `
+        <div class="cards-grid machine-grid">
+          ${profitability.metrics.map((metric) => `
+            <div class="card metric-card compact">
+              <div class="metric-title">${metric.label}</div>
+              <div class="metric-value">${metricValue(metric)}</div>
+              <div class="metric-detail">${metric.detail || ''}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+      ${profitability.sections?.length ? `
+        <div class="story-sections">
+          ${profitability.sections.map((section) => `
             <div class="story-block">
               <h3>${section.title}</h3>
               <ul class="notes-list">

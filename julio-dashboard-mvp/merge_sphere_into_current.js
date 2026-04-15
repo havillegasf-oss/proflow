@@ -97,6 +97,37 @@ function main() {
     ]
   };
 
+  current.profitability = {
+    title: 'Rentabilidad Caja Chica, marco real de cálculo',
+    subtitle: 'Sin inventar margen. Esto muestra cómo se calcula y qué inputs faltan.',
+    metrics: [
+      { label: 'Margen por operación', value: 'spread - costo', kind: 'text', detail: 'Venta CLP menos compra CLP menos costo financiero/comisiones' },
+      { label: 'ROIC por ciclo', value: 'utilidad / capital', kind: 'text', detail: 'Retorno por cada ciclo completo de capital' },
+      { label: 'Rotación mensual', value: 'volumen / capital', kind: 'text', detail: 'Cuántas veces rota el capital en el mes' },
+      { label: 'Utilidad mensual', value: 'capital × rotación × margen', kind: 'text', detail: 'Modelo simple para explicar escalamiento' }
+    ],
+    sections: [
+      {
+        title: 'Inputs que faltan conectar',
+        bullets: [
+          'Capital real hoy disponible para rotar en Caja Chica.',
+          'Spread promedio real por operación o por dólar.',
+          'Costo de fondeo o costo financiero asociado a ese capital.',
+          'Tiempo de ciclo real entre salida y retorno de caja.'
+        ]
+      },
+      {
+        title: 'Qué permitiría mostrar esto',
+        bullets: [
+          'Rentabilidad mensual real, no intuida.',
+          'Capacidad de escalar sin romper caja.',
+          'Qué pasa si entra más capital o si aumenta la rotación.',
+          'Una historia más seria para Julio: liquidez + máquina + retorno.'
+        ]
+      }
+    ]
+  };
+
   current.operations = uniqueBy([
     ...sphereOps,
     ...(current.operations || [])
