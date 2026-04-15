@@ -121,30 +121,75 @@ function loadDashboardData() {
   const raw = readJson(DATA_FILE);
   const today = raw.today || todayISO();
   const settlements = (raw.settlements || []).map((item) => {
-    const releaseDate = item.releaseDate || item.expectedReleaseDate;
-    const daysRemaining = daysBetween(today, releaseDate);
+    const releaseDate = item.releaseDate || item.expectedReleaseDate || item.releaseLabel || 'Por definir';
+    const hasIsoReleaseDate = /^\d{4}-\d{2}-\d{2}$/.test(releaseDate);
+    const daysRemaining = hasIsoReleaseDate ? daysBetween(today, releaseDate) : (item.daysRemaining ?? '');
     return {
       ...item,
       releaseDate,
       daysRemaining,
-      status: daysRemaining <= 0 ? 'LIBERABLE' : 'EN ESPERA'
+      status: item.status || (hasIsoReleaseDate ? (daysRemaining <= 0 ? 'LIBERABLE' : 'EN ESPERA') : 'RETENIDO'),
+      statusClass: item.statusClass || (hasIsoReleaseDate ? (daysRemaining <= 0 ? 'ok' : 'pending') : 'pending')
     };
   });
 
   const operationsToday = (raw.operations || []).filter((op) => op.date === today);
-  const totalBankBalance = (raw.accounts || []).reduce((sum, acc) => sum + Number(acc.balance || 0), 0);
-  const pendingTotal = settlements.reduce((sum, s) => sum + Number(s.amount || 0), 0);
-  const availableLiquidity = totalBankBalance;
-  const totalVisibility = totalBankBalance + pendingTotal;
+  const sumByCurrency = (items, amountField = 'balance') => items.reduce((acc, item) => {
+    const currency = item.currency || 'CLP';
+    acc[currency] = (acc[currency] || 0) + Number(item[amountField] || 0);
+    return acc;
+  }, {});
+
+  const availableByCurrency = sumByCurrency(raw.accounts || [], 'balance');
+  const pendingByCurrency = sumByCurrency(settlements, 'amount');
+  const visibilityByCurrency = Object.fromEntries(
+    Array.from(new Set([...Object.keys(availableByCurrency), ...Object.keys(pendingByCurrency)])).map((currency) => [
+      currency,
+      Number(availableByCurrency[currency] || 0) + Number(pendingByCurrency[currency] || 0)
+    ])
+  );
 
   return {
     ...raw,
     today,
     computed: {
-      totalBankBalance,
-      pendingTotal,
-      availableLiquidity,
-      totalVisibility,
+      totalBankBalance: Number(availableByCurrency.CLP || 0),
+      pendingTotal: Number(pendingByCurrency.CLP || 0),
+      availableLiquidity: Number(availableByCurrency.CLP || 0),
+      totalVisibility: Number(visibilityByCurrency.CLP || 0),
+      availableByCurrency,
+      pendingByCurrency,
+      visibilityByCurrency,
+      heroCards: [
+        {
+          title: 'CLP disponible',
+          kind: 'currency',
+          currency: 'CLP',
+          value: Number(availableByCurrency.CLP || 0),
+          detail: 'Saldo bancario disponible hoy'
+        },
+        {
+          title: 'USD disponible',
+          kind: 'currency',
+          currency: 'USD',
+          value: Number(availableByCurrency.USD || 0),
+          detail: 'Saldo USD ya líquido'
+        },
+        {
+          title: 'USD retenido',
+          kind: 'currency',
+          currency: 'USD',
+          value: Number(pendingByCurrency.USD || 0),
+          detail: 'Santander + reserva NMI'
+        },
+        {
+          title: 'USD contable total',
+          kind: 'currency',
+          currency: 'USD',
+          value: Number(visibilityByCurrency.USD || 0),
+          detail: 'Disponible + retenido'
+        }
+      ],
       operationsTodayCount: operationsToday.length,
       operationsTodayAmount: operationsToday.reduce((sum, op) => sum + Number(op.amount || 0), 0)
     },

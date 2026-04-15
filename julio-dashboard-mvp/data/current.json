@@ -3,104 +3,87 @@
   "organization": "ProFlow",
   "accounts": [
     {
-      "name": "Chase principal",
-      "institution": "Chase",
-      "currency": "CLP",
-      "balance": 18450000,
-      "status": "OK",
-      "statusLabel": "Disponible"
-    },
-    {
-      "name": "Santander Office Banking",
+      "name": "Santander CLP",
       "institution": "Santander",
       "currency": "CLP",
-      "balance": 6240000,
-      "status": "PENDING",
-      "statusLabel": "Con fondos en clearing"
-    },
-    {
-      "name": "Caja operativa",
-      "institution": "Interna",
-      "currency": "CLP",
-      "balance": 3120000,
+      "balance": 69271915,
       "status": "OK",
       "statusLabel": "Disponible"
     },
     {
-      "name": "NIA",
-      "institution": "NIA",
-      "currency": "CLP",
-      "balance": 0,
+      "name": "Santander USD",
+      "institution": "Santander",
+      "currency": "USD",
+      "balance": 68435,
       "status": "OK",
-      "statusLabel": "Por definir"
-    },
-    {
-      "name": "Stripe",
-      "institution": "Stripe",
-      "currency": "CLP",
-      "balance": 0,
-      "status": "PENDING",
-      "statusLabel": "Por conciliar"
+      "statusLabel": "Disponible"
     }
   ],
   "settlements": [
     {
-      "source": "Office Banking lote 14-04",
-      "amount": 4800000,
-      "releaseDate": "2026-04-26",
-      "notes": "Liberación tipo 12 días"
+      "source": "Santander USD retenido 12 días hábiles",
+      "amount": 210799,
+      "currency": "USD",
+      "releaseDate": "12 días hábiles",
+      "daysRemaining": "",
+      "status": "Saldo contable retenido",
+      "statusClass": "pending",
+      "notes": "Pagos internacionales Santander aún no disponibles."
     },
     {
-      "source": "Office Banking lote 10-04",
-      "amount": 1730000,
-      "releaseDate": "2026-04-22",
-      "notes": "Lote anterior"
-    },
-    {
-      "source": "Stripe clearing",
-      "amount": 950000,
-      "releaseDate": "2026-04-15",
-      "notes": "Por conciliar"
+      "source": "NMI reserve",
+      "amount": 67585,
+      "currency": "USD",
+      "releaseDate": "Sin fecha clara",
+      "daysRemaining": "",
+      "status": "En reserva",
+      "statusClass": "pending",
+      "notes": "Reserva NMI sin fecha clara de depósito."
     }
   ],
   "operations": [
     {
-      "date": "2026-04-14",
-      "type": "Procesamiento",
-      "description": "Movimiento Stripe",
-      "amount": 980000,
-      "account": "Stripe",
-      "status": "Por conciliar"
+      "date": "2026-04-15",
+      "type": "Saldo bancario",
+      "description": "Santander cuenta corriente disponible",
+      "amount": 69271915,
+      "currency": "CLP",
+      "account": "Santander CLP",
+      "status": "Disponible"
     },
     {
-      "date": "2026-04-14",
-      "type": "Procesamiento",
-      "description": "Movimiento NIA",
-      "amount": 1200000,
-      "account": "NIA",
-      "status": "Procesando"
+      "date": "2026-04-15",
+      "type": "Saldo bancario",
+      "description": "Santander cuenta USD disponible",
+      "amount": 68435,
+      "currency": "USD",
+      "account": "Santander USD",
+      "status": "Disponible"
     },
     {
-      "date": "2026-04-14",
-      "type": "Abono cliente",
-      "description": "Liquidación cliente B",
-      "amount": 2450000,
-      "account": "Santander Office Banking",
-      "status": "Pendiente liberación"
+      "date": "2026-04-15",
+      "type": "Retención bancaria",
+      "description": "Santander pagos internacionales retenidos por liquidar",
+      "amount": 210799,
+      "currency": "USD",
+      "account": "Santander USD",
+      "status": "Saldo contable retenido"
     },
     {
-      "date": "2026-04-14",
-      "type": "Compra cupo",
-      "description": "Compra de cupo USD cliente A",
-      "amount": 1900000,
-      "account": "Chase principal",
-      "status": "Ejecutada"
+      "date": "2026-04-15",
+      "type": "Reserva NMI",
+      "description": "Fondos en reserva NMI sin fecha clara de depósito",
+      "amount": 67585,
+      "currency": "USD",
+      "account": "NMI / Smart Global Advisory",
+      "status": "En reserva"
     },
     {
       "date": "2026-04-14",
       "type": "Batch Sphere",
       "description": "Batch 195 | Terminal 75971739 | 6 transacciones",
       "amount": 13360,
+      "currency": "USD",
       "account": "Sphere / Smart Global Advisory",
       "status": "Settled"
     },
@@ -109,6 +92,7 @@
       "type": "Batch Sphere",
       "description": "Batch 194 | Terminal 75971739 | 4 transacciones",
       "amount": 11000,
+      "currency": "USD",
       "account": "Sphere / Smart Global Advisory",
       "status": "Settled"
     },
@@ -117,217 +101,20 @@
       "type": "Batch Sphere",
       "description": "Batch 193 | Terminal 75971739 | 5 transacciones",
       "amount": 14200,
-      "account": "Sphere / Smart Global Advisory",
-      "status": "Settled"
-    },
-    {
-      "date": "2026-04-09",
-      "type": "Batch Sphere",
-      "description": "Batch 192 | Terminal 75971739 | 7 transacciones",
-      "amount": 19530,
-      "account": "Sphere / Smart Global Advisory",
-      "status": "Settled"
-    },
-    {
-      "date": "2026-04-08",
-      "type": "Batch Sphere",
-      "description": "Batch 191 | Terminal 75971739 | 1 transacciones",
-      "amount": 2000,
-      "account": "Sphere / Smart Global Advisory",
-      "status": "Settled"
-    },
-    {
-      "date": "2026-04-06",
-      "type": "Batch Sphere",
-      "description": "Batch 190 | Terminal 75971739 | 1 transacciones",
-      "amount": 2000,
-      "account": "Sphere / Smart Global Advisory",
-      "status": "Settled"
-    },
-    {
-      "date": "2026-04-05",
-      "type": "Batch Sphere",
-      "description": "Batch 189 | Terminal 75971739 | 7 transacciones",
-      "amount": 20000,
-      "account": "Sphere / Smart Global Advisory",
-      "status": "Settled"
-    },
-    {
-      "date": "2026-04-03",
-      "type": "Batch Sphere",
-      "description": "Batch 188 | Terminal 75971739 | 5 transacciones",
-      "amount": 11143,
-      "account": "Sphere / Smart Global Advisory",
-      "status": "Settled"
-    },
-    {
-      "date": "2026-04-02",
-      "type": "Batch Sphere",
-      "description": "Batch 187 | Terminal 75971739 | 3 transacciones",
-      "amount": 3500,
-      "account": "Sphere / Smart Global Advisory",
-      "status": "Settled"
-    },
-    {
-      "date": "2026-04-01",
-      "type": "Batch Sphere",
-      "description": "Batch 186 | Terminal 75971739 | 6 transacciones",
-      "amount": 5450,
+      "currency": "USD",
       "account": "Sphere / Smart Global Advisory",
       "status": "Settled"
     }
   ],
   "notes": [
-    "Sphere Batch History 04/01-04/14: 10 batches visibles, 45 transacciones y $102.183 en volumen capturado.",
-    "Sphere Deposit History mismo corte: $104.183 en depósitos, $67.285 en débitos/ajustes y neto $36.898.",
-    "Sphere quedó conectado vía navegador autenticado y extractores locales; Transaction Search sigue pendiente de filtro útil, pero Batch History + Deposit History ya aportan señal real al MVP.",
-    "Datos sincronizados desde Google Sheets para demo.",
-    "Fuente temporal operativa mientras se conectan fuentes más automáticas."
+    "Dashboard limpiado para reunión con Julio: se removieron cuentas demo y se dejó foco en saldos reales.",
+    "CLP disponible Santander: $69.271.915.",
+    "USD disponible Santander: USD 68,435.00.",
+    "USD retenido Santander: USD 210,799.00, tratar como saldo contable retenido, no disponible.",
+    "NMI reserve: USD 67,585.00, sumar a saldos contables, no a caja disponible inmediata.",
+    "USD contable total actual: USD 346,819.00."
   ],
-  "machine": {
-    "title": "Máquina de dinero, señal operativa real",
-    "periodLabel": "Sphere / Smart Global Advisory, corte 01-04 al 14-04",
-    "metrics": [
-      {
-        "label": "Volumen procesado",
-        "value": 102183,
-        "kind": "currency",
-        "detail": "Batch History visible del período"
-      },
-      {
-        "label": "Transacciones",
-        "value": 45,
-        "kind": "number",
-        "detail": "Operaciones visibles en batches"
-      },
-      {
-        "label": "Batches",
-        "value": 10,
-        "kind": "number",
-        "detail": "Lotes procesados visibles"
-      },
-      {
-        "label": "Ticket promedio",
-        "value": 2270.733333333333,
-        "kind": "currency",
-        "detail": "Promedio por transacción"
-      },
-      {
-        "label": "Depósito neto",
-        "value": 36897.7,
-        "kind": "currency",
-        "detail": "Neto visto en Deposit History"
-      },
-      {
-        "label": "Débitos / ajustes",
-        "value": 67285.3,
-        "kind": "currency",
-        "detail": "Cargo y ajuste visto en Deposit History"
-      }
-    ],
-    "notes": [
-      "Esto no prueba por sí solo rentabilidad final de La Caja Chica, pero sí demuestra tracción operativa, volumen y capacidad de procesamiento real.",
-      "La siguiente capa es conectar rentabilidad real de Caja Chica encima de esta base operativa, no reemplazarla."
-    ]
-  },
-  "story": {
-    "title": "Por qué esto puede escalar",
-    "subtitle": "Narrativa comercial para mostrar capacidad real, no solo saldo en caja",
-    "metrics": [
-      {
-        "label": "Días activos",
-        "value": 10,
-        "kind": "number",
-        "detail": "Días con batch visible en el corte"
-      },
-      {
-        "label": "Promedio por batch",
-        "value": 10218.3,
-        "kind": "currency",
-        "detail": "Promedio de volumen por día activo"
-      },
-      {
-        "label": "Volumen / transacción",
-        "value": 2270.733333333333,
-        "kind": "currency",
-        "detail": "Señal simple de ticket operativo"
-      }
-    ],
-    "sections": [
-      {
-        "title": "Lo que ya prueba hoy",
-        "bullets": [
-          "Hay volumen real, no una historia teórica: batches diarios, transacciones visibles y depósitos observables.",
-          "La Caja Chica sigue viva como unidad operativa, pero ProFlow nace como marca paraguas para ordenar y escalar.",
-          "La liquidez visible puede contarse junto a la capacidad de producir flujo y expansión."
-        ]
-      },
-      {
-        "title": "Por qué nace ProFlow",
-        "bullets": [
-          "La Caja Chica fue interpretada como cash advance en Instagram Ads y eso volvió inestable el crecimiento pagado.",
-          "ProFlow nace para tener una marca más escalable, más exportable y menos frágil frente a plataformas y expansión regional.",
-          "La lectura correcta no es reemplazar La Caja Chica, sino presentarla como La Caja Chica by ProFlow dentro de una visión más grande."
-        ]
-      },
-      {
-        "title": "Lo que falta para cerrar rentabilidad real",
-        "bullets": [
-          "Conectar la rentabilidad propia de La Caja Chica: spread, costo de capital, rotación y margen neto.",
-          "Separar volumen procesado de utilidad efectiva, para no vender humo ni mezclar caja con margen.",
-          "Traducir esta operación en un caso de escalamiento: cuánto entra, cuánto rota y cuánto puede crecer."
-        ]
-      }
-    ]
-  },
-  "profitability": {
-    "title": "Rentabilidad Caja Chica, marco real de cálculo",
-    "subtitle": "Sin inventar margen. Esto muestra cómo se calcula y qué inputs faltan.",
-    "metrics": [
-      {
-        "label": "Margen por operación",
-        "value": "spread - costo",
-        "kind": "text",
-        "detail": "Venta CLP menos compra CLP menos costo financiero/comisiones"
-      },
-      {
-        "label": "ROIC por ciclo",
-        "value": "utilidad / capital",
-        "kind": "text",
-        "detail": "Retorno por cada ciclo completo de capital"
-      },
-      {
-        "label": "Rotación mensual",
-        "value": "volumen / capital",
-        "kind": "text",
-        "detail": "Cuántas veces rota el capital en el mes"
-      },
-      {
-        "label": "Utilidad mensual",
-        "value": "capital × rotación × margen",
-        "kind": "text",
-        "detail": "Modelo simple para explicar escalamiento"
-      }
-    ],
-    "sections": [
-      {
-        "title": "Inputs que faltan conectar",
-        "bullets": [
-          "Capital real hoy disponible para rotar en Caja Chica.",
-          "Spread promedio real por operación o por dólar.",
-          "Costo de fondeo o costo financiero asociado a ese capital.",
-          "Tiempo de ciclo real entre salida y retorno de caja."
-        ]
-      },
-      {
-        "title": "Qué permitiría mostrar esto",
-        "bullets": [
-          "Rentabilidad mensual real, no intuida.",
-          "Capacidad de escalar sin romper caja.",
-          "Qué pasa si entra más capital o si aumenta la rotación.",
-          "Una historia más seria para Julio: liquidez + máquina + retorno."
-        ]
-      }
-    ]
-  }
+  "machine": null,
+  "story": null,
+  "profitability": null
 }

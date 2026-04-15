@@ -15,31 +15,32 @@ async function loadDashboard() {
   renderNotes(data.notes || []);
 }
 
-function clp(value) {
-  return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Number(value || 0));
+function formatMoney(value, currency = 'CLP') {
+  const digits = currency === 'CLP' ? 0 : 2;
+  return new Intl.NumberFormat('es-CL', { style: 'currency', currency, maximumFractionDigits: digits }).format(Number(value || 0));
 }
 
 function renderHero(data) {
   const computed = data.computed || {};
-  const cards = [
-    ['Liquidez visible total', clp(computed.totalVisibility), 'Caja visible + montos retenidos'],
-    ['Disponible bancario', clp(computed.totalBankBalance), 'Saldo hoy en cuentas visibles'],
-    ['Pendiente por liberar', clp(computed.pendingTotal), 'Fondos en espera / clearing'],
-    ['Operaciones del día', `${computed.operationsTodayCount || 0}`, clp(computed.operationsTodayAmount || 0)]
+  const heroCards = computed.heroCards || [
+    { title: 'Liquidez visible total', kind: 'currency', currency: 'CLP', value: computed.totalVisibility, detail: 'Caja visible + montos retenidos' },
+    { title: 'Disponible bancario', kind: 'currency', currency: 'CLP', value: computed.totalBankBalance, detail: 'Saldo hoy en cuentas visibles' },
+    { title: 'Pendiente por liberar', kind: 'currency', currency: 'CLP', value: computed.pendingTotal, detail: 'Fondos en espera / clearing' },
+    { title: 'Operaciones del día', kind: 'text', value: `${computed.operationsTodayCount || 0} | ${formatMoney(computed.operationsTodayAmount || 0, 'CLP')}`, detail: 'Actividad del día' }
   ];
 
-  document.getElementById('hero-cards').innerHTML = cards.map(([title, value, detail]) => `
+  document.getElementById('hero-cards').innerHTML = heroCards.map((card) => `
     <div class="card metric-card">
-      <div class="metric-title">${title}</div>
-      <div class="metric-value">${value}</div>
-      <div class="metric-detail">${detail}</div>
+      <div class="metric-title">${card.title}</div>
+      <div class="metric-value">${card.kind === 'currency' ? formatMoney(card.value, card.currency || 'CLP') : String(card.value ?? '-')}</div>
+      <div class="metric-detail">${card.detail || ''}</div>
     </div>
   `).join('');
 }
 
 function metricValue(metric) {
   if (!metric) return '-';
-  if (metric.kind === 'currency') return clp(metric.value);
+  if (metric.kind === 'currency') return formatMoney(metric.value, metric.currency || 'CLP');
   if (metric.kind === 'percent') return `${Number(metric.value || 0).toFixed(1)}%`;
   return String(metric.value ?? '-');
 }
@@ -178,7 +179,7 @@ function renderAccounts(accounts, today) {
             <td>${acc.name}</td>
             <td>${acc.institution}</td>
             <td>${acc.currency || 'CLP'}</td>
-            <td>${clp(acc.balance)}</td>
+            <td>${formatMoney(acc.balance, acc.currency || 'CLP')}</td>
             <td><span class="pill ${acc.status === 'PENDING' ? 'pending' : 'ok'}">${acc.statusLabel || acc.status || 'OK'}</span></td>
           </tr>
         `).join('')}
@@ -197,10 +198,10 @@ function renderSettlements(items) {
         ${items.map((item) => `
           <tr>
             <td>${item.source}</td>
-            <td>${clp(item.amount)}</td>
+            <td>${formatMoney(item.amount, item.currency || 'CLP')}</td>
             <td>${item.releaseDate}</td>
-            <td>${item.daysRemaining}</td>
-            <td><span class="pill ${item.daysRemaining <= 0 ? 'ok' : 'pending'}">${item.status}</span></td>
+            <td>${item.daysRemaining ?? ''}</td>
+            <td><span class="pill ${item.statusClass || ((item.daysRemaining ?? 1) <= 0 ? 'ok' : 'pending')}">${item.status}</span></td>
           </tr>
         `).join('')}
       </tbody>
@@ -220,7 +221,7 @@ function renderOperations(items) {
             <td>${item.date}</td>
             <td>${item.type}</td>
             <td>${item.description}</td>
-            <td>${clp(item.amount)}</td>
+            <td>${formatMoney(item.amount, item.currency || 'CLP')}</td>
             <td>${item.account}</td>
             <td>${item.status}</td>
           </tr>
