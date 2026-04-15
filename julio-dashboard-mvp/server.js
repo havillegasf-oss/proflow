@@ -199,7 +199,7 @@ function dashboardPage() {
         <span class="brand-connector">By</span>
         <img src="/assets/proflow-latam.png" alt="ProFlow Latam" class="brand-logo proflow-logo" />
       </div>
-      <h1>Dashboard de liquidez</h1>
+      <h1>DASHBOARD DE LIQUIDEZ</h1>
       <div class="muted">Liquidez, operación y narrativa de escala</div>
     </div>
     <div class="topbar-actions">
