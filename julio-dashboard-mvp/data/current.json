@@ -66,19 +66,11 @@
   "operations": [
     {
       "date": "2026-04-14",
-      "type": "Compra cupo",
-      "description": "Compra de cupo USD cliente A",
-      "amount": 1900000,
-      "account": "Chase principal",
-      "status": "Ejecutada"
-    },
-    {
-      "date": "2026-04-14",
-      "type": "Abono cliente",
-      "description": "Liquidación cliente B",
-      "amount": 2450000,
-      "account": "Santander Office Banking",
-      "status": "Pendiente liberación"
+      "type": "Procesamiento",
+      "description": "Movimiento Stripe",
+      "amount": 980000,
+      "account": "Stripe",
+      "status": "Por conciliar"
     },
     {
       "date": "2026-04-14",
@@ -90,14 +82,105 @@
     },
     {
       "date": "2026-04-14",
-      "type": "Procesamiento",
-      "description": "Movimiento Stripe",
-      "amount": 980000,
-      "account": "Stripe",
-      "status": "Por conciliar"
+      "type": "Abono cliente",
+      "description": "Liquidación cliente B",
+      "amount": 2450000,
+      "account": "Santander Office Banking",
+      "status": "Pendiente liberación"
+    },
+    {
+      "date": "2026-04-14",
+      "type": "Compra cupo",
+      "description": "Compra de cupo USD cliente A",
+      "amount": 1900000,
+      "account": "Chase principal",
+      "status": "Ejecutada"
+    },
+    {
+      "date": "2026-04-14",
+      "type": "Batch Sphere",
+      "description": "Batch 195 | Terminal 75971739 | 6 transacciones",
+      "amount": 13360,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-11",
+      "type": "Batch Sphere",
+      "description": "Batch 194 | Terminal 75971739 | 4 transacciones",
+      "amount": 11000,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-10",
+      "type": "Batch Sphere",
+      "description": "Batch 193 | Terminal 75971739 | 5 transacciones",
+      "amount": 14200,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-09",
+      "type": "Batch Sphere",
+      "description": "Batch 192 | Terminal 75971739 | 7 transacciones",
+      "amount": 19530,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-08",
+      "type": "Batch Sphere",
+      "description": "Batch 191 | Terminal 75971739 | 1 transacciones",
+      "amount": 2000,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-06",
+      "type": "Batch Sphere",
+      "description": "Batch 190 | Terminal 75971739 | 1 transacciones",
+      "amount": 2000,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-05",
+      "type": "Batch Sphere",
+      "description": "Batch 189 | Terminal 75971739 | 7 transacciones",
+      "amount": 20000,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-03",
+      "type": "Batch Sphere",
+      "description": "Batch 188 | Terminal 75971739 | 5 transacciones",
+      "amount": 11143,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-02",
+      "type": "Batch Sphere",
+      "description": "Batch 187 | Terminal 75971739 | 3 transacciones",
+      "amount": 3500,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
+    },
+    {
+      "date": "2026-04-01",
+      "type": "Batch Sphere",
+      "description": "Batch 186 | Terminal 75971739 | 6 transacciones",
+      "amount": 5450,
+      "account": "Sphere / Smart Global Advisory",
+      "status": "Settled"
     }
   ],
   "notes": [
+    "Sphere Batch History 04/01-04/14: 10 batches visibles, 45 transacciones y $102.183 en volumen capturado.",
+    "Sphere Deposit History mismo corte: $104.183 en depósitos, $67.285 en débitos/ajustes y neto $36.898.",
+    "Sphere quedó conectado vía navegador autenticado y extractores locales; Transaction Search sigue pendiente de filtro útil, pero Batch History + Deposit History ya aportan señal real al MVP.",
     "Datos sincronizados desde Google Sheets para demo.",
     "Fuente temporal operativa mientras se conectan fuentes más automáticas."
   ]
