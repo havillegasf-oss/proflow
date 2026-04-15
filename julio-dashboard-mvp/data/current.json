@@ -17,6 +17,14 @@
       "balance": 68435,
       "status": "OK",
       "statusLabel": "Disponible"
+    },
+    {
+      "name": "Chase USD",
+      "institution": "Chase",
+      "currency": "USD",
+      "balance": 12000,
+      "status": "OK",
+      "statusLabel": "Disponible"
     }
   ],
   "settlements": [
@@ -106,14 +114,7 @@
       "status": "Settled"
     }
   ],
-  "notes": [
-    "Dashboard limpiado para reunión con Julio: se removieron cuentas demo y se dejó foco en saldos reales.",
-    "CLP disponible Santander: $69.271.915.",
-    "USD disponible Santander: USD 68,435.00.",
-    "USD retenido Santander: USD 210,799.00, tratar como saldo contable retenido, no disponible.",
-    "NMI reserve: USD 67,585.00, sumar a saldos contables, no a caja disponible inmediata.",
-    "USD contable total actual: USD 346,819.00."
-  ],
+  "notes": [],
   "machine": null,
   "story": null,
   "profitability": null

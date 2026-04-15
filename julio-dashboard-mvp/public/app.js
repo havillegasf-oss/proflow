@@ -232,7 +232,16 @@ function renderOperations(items) {
 }
 
 function renderNotes(notes) {
-  document.getElementById('notes-list').innerHTML = `
+  const container = document.getElementById('notes-list');
+  const panel = container?.closest('.panel');
+  if (!container || !panel) return;
+  if (!notes || !notes.length) {
+    panel.style.display = 'none';
+    container.innerHTML = '';
+    return;
+  }
+  panel.style.display = '';
+  container.innerHTML = `
     <ul class="notes-list">
       ${notes.map((note) => `<li>${note}</li>`).join('')}
     </ul>

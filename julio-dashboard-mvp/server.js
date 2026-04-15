@@ -248,7 +248,6 @@ function dashboardPage() {
       <div class="muted">Liquidez, operación y narrativa de escala</div>
     </div>
     <div class="topbar-actions">
-      <span class="badge">MVP inversionista</span>
       <a href="/logout">Salir</a>
     </div>
   </header>
