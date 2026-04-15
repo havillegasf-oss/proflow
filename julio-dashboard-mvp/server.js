@@ -172,7 +172,7 @@ function loginPage(error = '') {
       </div>
     </div>
     <div class="eyebrow">ProFlow</div>
-    <h1>La Caja Chica by ProFlow</h1>
+    <h1>Acceso inversionista</h1>
     <p>Visualizador de liquidez, operación y capacidad de escala.</p>
     ${error ? `<div class="error-box">${error}</div>` : ''}
     <form method="post" action="/login" class="login-form">
@@ -206,7 +206,7 @@ function dashboardPage() {
         </div>
       </div>
       <div class="eyebrow">ProFlow</div>
-      <h1>La Caja Chica by ProFlow</h1>
+      <h1>Dashboard de liquidez</h1>
       <div class="muted">Liquidez, operación y narrativa de escala</div>
     </div>
     <div class="topbar-actions">
