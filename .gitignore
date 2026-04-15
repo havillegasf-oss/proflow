@@ -4,6 +4,7 @@ node_modules/
 # Local environments
 .venv-audio/
 .playwright-*/
+.chrome-*/
 .openclaw/
 claude/
 
