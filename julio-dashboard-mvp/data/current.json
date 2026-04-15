@@ -115,11 +115,9 @@
     }
   ],
   "notes": [
-    "Tipo de cambio de referencia para liquidez total: 886,09 CLP por USD.",
-    "CLP disponible convertido a USD: 78,177.06.",
-    "USD disponible total: 80,435.00.",
-    "USD retenido total: 278,384.00.",
-    "Liquidez total estimada: USD 436,996.06."
+    "Liquidez total estimada: USD 436,996.06.",
+    "Cálculo: USD contable total 358,819.00 + CLP disponible convertido a USD 78,177.06 al tipo de cambio 886,09.",
+    "USD contable total = USD disponible 80,435.00 + USD retenido 278,384.00."
   ],
   "machine": null,
   "story": null,
