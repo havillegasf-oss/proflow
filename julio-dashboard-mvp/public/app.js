@@ -7,6 +7,7 @@ async function loadDashboard() {
   const data = await res.json();
   renderHero(data);
   renderMachine(data.machine || null);
+  renderStory(data.story || null);
   renderAccounts(data.accounts || [], data.today);
   renderSettlements(data.settlements || []);
   renderOperations(data.operations || []);
@@ -72,6 +73,49 @@ function renderMachine(machine) {
         <ul class="notes-list machine-notes">
           ${notes.map((note) => `<li>${note}</li>`).join('')}
         </ul>
+      ` : ''}
+    </div>
+  `;
+}
+
+function renderStory(story) {
+  const container = document.getElementById('story-panel');
+  if (!container) return;
+  if (!story || (!story.metrics?.length && !story.sections?.length)) {
+    container.innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="panel story-panel">
+      <div class="section-title-row">
+        <div>
+          <h2>${story.title || 'Narrativa de escalamiento'}</h2>
+          <div class="muted">${story.subtitle || ''}</div>
+        </div>
+      </div>
+      ${story.metrics?.length ? `
+        <div class="cards-grid machine-grid">
+          ${story.metrics.map((metric) => `
+            <div class="card metric-card compact">
+              <div class="metric-title">${metric.label}</div>
+              <div class="metric-value">${metricValue(metric)}</div>
+              <div class="metric-detail">${metric.detail || ''}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+      ${story.sections?.length ? `
+        <div class="story-sections">
+          ${story.sections.map((section) => `
+            <div class="story-block">
+              <h3>${section.title}</h3>
+              <ul class="notes-list">
+                ${(section.bullets || []).map((bullet) => `<li>${bullet}</li>`).join('')}
+              </ul>
+            </div>
+          `).join('')}
+        </div>
       ` : ''}
     </div>
   `;

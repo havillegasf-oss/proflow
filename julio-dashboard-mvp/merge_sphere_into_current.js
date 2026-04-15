@@ -69,6 +69,34 @@ function main() {
     ]
   };
 
+  current.story = {
+    title: 'Por qué esto puede escalar',
+    subtitle: 'Narrativa comercial para mostrar capacidad real, no solo saldo en caja',
+    metrics: [
+      { label: 'Días activos', value: batchRows.length, kind: 'number', detail: 'Días con batch visible en el corte' },
+      { label: 'Promedio por batch', value: batchRows.length ? totalBatchVolume / batchRows.length : 0, kind: 'currency', detail: 'Promedio de volumen por día activo' },
+      { label: 'Volumen / transacción', value: avgTicket, kind: 'currency', detail: 'Señal simple de ticket operativo' }
+    ],
+    sections: [
+      {
+        title: 'Lo que ya prueba hoy',
+        bullets: [
+          'Hay volumen real, no una historia teórica: batches diarios, transacciones visibles y depósitos observables.',
+          'El sistema ya muestra recurrencia operativa y no solo eventos aislados.',
+          'La liquidez visible puede contarse junto a la capacidad de producir flujo.'
+        ]
+      },
+      {
+        title: 'Lo que falta para cerrar rentabilidad real',
+        bullets: [
+          'Conectar la rentabilidad propia de La Caja Chica: spread, costo de capital, rotación y margen neto.',
+          'Separar volumen procesado de utilidad efectiva, para no vender humo ni mezclar caja con margen.',
+          'Traducir esta operación en un caso de escalamiento: cuánto entra, cuánto rota y cuánto puede crecer.'
+        ]
+      }
+    ]
+  };
+
   current.operations = uniqueBy([
     ...sphereOps,
     ...(current.operations || [])

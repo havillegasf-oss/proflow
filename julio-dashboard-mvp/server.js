@@ -196,6 +196,7 @@ function dashboardPage() {
     <section id="hero-cards" class="cards-grid"></section>
 
     <section id="machine-panel"></section>
+    <section id="story-panel"></section>
 
     <section class="panel two-col">
       <div>
