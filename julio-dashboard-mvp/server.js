@@ -168,10 +168,8 @@ function loginPage(error = '') {
       <img src="/assets/proflow-latam.png" alt="ProFlow Latam" class="brand-logo proflow-logo" />
       <div class="subbrand-row">
         <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
-        <span class="subbrand-text">by ProFlow</span>
       </div>
     </div>
-    <div class="eyebrow">ProFlow</div>
     <h1>Acceso inversionista</h1>
     <p>Visualizador de liquidez, operación y capacidad de escala.</p>
     ${error ? `<div class="error-box">${error}</div>` : ''}
@@ -180,7 +178,7 @@ function loginPage(error = '') {
       <label>Clave<input name="password" type="password" autocomplete="current-password" required /></label>
       <button type="submit">Ingresar</button>
     </form>
-    <div class="demo-note">MVP demo. ProFlow es la marca paraguas; La Caja Chica queda como unidad operativa activa.</div>
+    <div class="demo-note">MVP demo. Visualizador privado para presentar operación, liquidez y capacidad de escala.</div>
   </div>
 </body>
 </html>`;
@@ -202,10 +200,8 @@ function dashboardPage() {
         <img src="/assets/proflow-latam.png" alt="ProFlow Latam" class="brand-logo proflow-logo" />
         <div class="subbrand-row">
           <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
-          <span class="subbrand-text">by ProFlow</span>
         </div>
       </div>
-      <div class="eyebrow">ProFlow</div>
       <h1>Dashboard de liquidez</h1>
       <div class="muted">Liquidez, operación y narrativa de escala</div>
     </div>
