@@ -22,10 +22,16 @@ a { color: var(--accent); text-decoration: none; }
 h1, h2, h3 { color: #0f172a; }
 
 .topbar {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 28px 32px 12px;
+}
+
+.topbar > div:first-child {
+  margin: 0 auto;
+  text-align: center;
 }
 
 .brand-lockup {
@@ -42,6 +48,7 @@ h1, h2, h3 { color: #0f172a; }
 
 .topbar-lockup {
   max-width: 620px;
+  margin: 0 auto 12px;
 }
 
 .login-lockup {
@@ -71,7 +78,14 @@ h1, h2, h3 { color: #0f172a; }
   text-transform: uppercase;
 }
 
-.topbar-actions { display: flex; gap: 14px; align-items: center; }
+.topbar-actions {
+  position: absolute;
+  right: 32px;
+  top: 28px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
 .container {
   padding: 0 32px 40px;
   display: grid;
@@ -235,7 +249,18 @@ th { color: var(--muted); font-weight: 600; }
 @media (max-width: 960px) {
   .two-col { grid-template-columns: 1fr; }
   .topbar, .container { padding-left: 16px; padding-right: 16px; }
-  .topbar { align-items: flex-start; }
+  .topbar {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+  .topbar > div:first-child {
+    width: 100%;
+  }
+  .topbar-actions {
+    position: static;
+    margin-bottom: 12px;
+  }
   .brand-inline { gap: 10px; }
   .proflow-logo { width: min(220px, 100%); }
   .caja-logo { width: min(170px, 100%); }
