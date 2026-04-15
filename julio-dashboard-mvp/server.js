@@ -164,11 +164,10 @@ function loginPage(error = '') {
 </head>
 <body class="login-body">
   <div class="login-card">
-    <div class="brand-lockup login-lockup">
+    <div class="brand-lockup login-lockup brand-inline">
+      <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
+      <span class="brand-connector">By</span>
       <img src="/assets/proflow-latam.png" alt="ProFlow Latam" class="brand-logo proflow-logo" />
-      <div class="subbrand-row">
-        <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
-      </div>
     </div>
     <h1>Accesos</h1>
     <p>Visualizador de liquidez, operación y capacidad de escala.</p>
@@ -195,11 +194,10 @@ function dashboardPage() {
 <body>
   <header class="topbar">
     <div>
-      <div class="brand-lockup topbar-lockup">
+      <div class="brand-lockup topbar-lockup brand-inline">
+        <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
+        <span class="brand-connector">By</span>
         <img src="/assets/proflow-latam.png" alt="ProFlow Latam" class="brand-logo proflow-logo" />
-        <div class="subbrand-row">
-          <img src="/assets/caja-chica.png" alt="La Caja Chica" class="brand-logo caja-logo" />
-        </div>
       </div>
       <h1>Dashboard de liquidez</h1>
       <div class="muted">Liquidez, operación y narrativa de escala</div>
