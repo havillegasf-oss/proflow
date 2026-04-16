@@ -1,5 +1,5 @@
 {
-  "today": "2026-04-15",
+  "today": "2026-04-16",
   "organization": "ProFlow",
   "accounts": [
     {
@@ -15,14 +15,6 @@
       "institution": "Santander",
       "currency": "USD",
       "balance": 68435,
-      "status": "OK",
-      "statusLabel": "Disponible"
-    },
-    {
-      "name": "Chase USD",
-      "institution": "Chase",
-      "currency": "USD",
-      "balance": 12000,
       "status": "OK",
       "statusLabel": "Disponible"
     }
@@ -115,9 +107,10 @@
     }
   ],
   "notes": [
-    "Liquidez total estimada: USD 436,996.06.",
-    "Cálculo: USD contable total 358,819.00 + CLP disponible convertido a USD 78,177.06 al tipo de cambio 886,09.",
-    "USD contable total = USD disponible 80,435.00 + USD retenido 278,384.00."
+    "Fecha de actualización: 2026-04-16.",
+    "Liquidez total estimada: USD 424,996.06.",
+    "Cálculo: USD contable total 346,819.00 + CLP disponible convertido a USD 78,177.06 al tipo de cambio 886,09.",
+    "USD contable total = USD disponible 68,435.00 + USD retenido 278,384.00."
   ],
   "machine": null,
   "story": null,
