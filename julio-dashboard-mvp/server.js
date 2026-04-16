@@ -9,6 +9,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 const DEMO_USER = process.env.DASH_USER || 'julio';
 const DEMO_PASS = process.env.DASH_PASS || 'proflow2026';
 const DATA_FILE = process.env.DASH_DATA_FILE || path.join(__dirname, 'data', 'current.json');
+const AUDIT_FILE = path.join(__dirname, 'data', 'login_audit.jsonl');
 
 const sessions = new Map();
 
@@ -115,6 +116,19 @@ function readBody(req) {
 function parseForm(body) {
   const params = new URLSearchParams(body);
   return Object.fromEntries(params.entries());
+}
+
+function clientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.trim()) {
+    return forwarded.split(',')[0].trim();
+  }
+  return req.socket?.remoteAddress || 'unknown';
+}
+
+function appendAudit(event) {
+  fs.mkdirSync(path.dirname(AUDIT_FILE), { recursive: true });
+  fs.appendFileSync(AUDIT_FILE, JSON.stringify({ at: new Date().toISOString(), ...event }) + '\n');
 }
 
 function loadDashboardData() {
@@ -317,7 +331,13 @@ const server = http.createServer(async (req, res) => {
     const { username, password } = parseForm(body);
     if (username === DEMO_USER && password === DEMO_PASS) {
       const token = crypto.randomBytes(24).toString('hex');
-      sessions.set(token, { username, createdAt: Date.now() });
+      sessions.set(token, { username, createdAt: Date.now(), lastViewAuditAt: 0 });
+      appendAudit({
+        type: 'login_success',
+        username,
+        ip: clientIp(req),
+        userAgent: req.headers['user-agent'] || ''
+      });
       res.writeHead(302, {
         'Set-Cookie': `session=${token}; HttpOnly; Path=/; SameSite=Lax`,
         Location: '/'
@@ -335,6 +355,16 @@ const server = http.createServer(async (req, res) => {
   }
   if (req.method === 'GET' && url.pathname === '/api/dashboard') {
     if (!requireAuth(req, res)) return;
+    const session = getSession(req);
+    if (session && (!session.lastViewAuditAt || (Date.now() - session.lastViewAuditAt) > 300000)) {
+      session.lastViewAuditAt = Date.now();
+      appendAudit({
+        type: 'dashboard_view',
+        username: session.username,
+        ip: clientIp(req),
+        userAgent: req.headers['user-agent'] || ''
+      });
+    }
     return sendJson(res, loadDashboardData());
   }
   if (req.method === 'GET' && url.pathname === '/') {
