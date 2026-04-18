@@ -31,11 +31,14 @@ function daysBetween(a, b) {
 }
 
 function todayISO() {
-  const now = new Date();
-  const y = now.getFullYear();
-  const m = String(now.getMonth() + 1).padStart(2, '0');
-  const d = String(now.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Santiago',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(new Date());
+  const pick = (type) => parts.find((part) => part.type === type)?.value || '';
+  return `${pick('year')}-${pick('month')}-${pick('day')}`;
 }
 
 function parseCookies(req) {
@@ -133,7 +136,7 @@ function appendAudit(event) {
 
 function loadDashboardData() {
   const raw = readJson(DATA_FILE);
-  const today = raw.today || todayISO();
+  const today = todayISO();
   const settlements = (raw.settlements || []).map((item) => {
     const releaseDate = item.releaseDate || item.expectedReleaseDate || item.releaseLabel || 'Por definir';
     const hasIsoReleaseDate = /^\d{4}-\d{2}-\d{2}$/.test(releaseDate);
