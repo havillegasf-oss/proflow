@@ -134,6 +134,18 @@ function appendAudit(event) {
   fs.appendFileSync(AUDIT_FILE, JSON.stringify({ at: new Date().toISOString(), ...event }) + '\n');
 }
 
+function readAuditEntries(limit = 200) {
+  if (!fs.existsSync(AUDIT_FILE)) return [];
+  const lines = fs.readFileSync(AUDIT_FILE, 'utf8').split('\n').filter(Boolean);
+  return lines.slice(-limit).map((line) => {
+    try {
+      return JSON.parse(line);
+    } catch {
+      return { type: 'invalid_line', raw: line };
+    }
+  });
+}
+
 function loadDashboardData() {
   const raw = readJson(DATA_FILE);
   const today = todayISO();
@@ -369,6 +381,10 @@ const server = http.createServer(async (req, res) => {
       });
     }
     return sendJson(res, loadDashboardData());
+  }
+  if (req.method === 'GET' && url.pathname === '/api/access-audit') {
+    if (!requireAuth(req, res)) return;
+    return sendJson(res, { entries: readAuditEntries() });
   }
   if (req.method === 'GET' && url.pathname === '/') {
     if (!requireAuth(req, res)) return;
