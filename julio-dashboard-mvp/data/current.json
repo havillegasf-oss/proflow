@@ -14,7 +14,7 @@
       "name": "Santander USD",
       "institution": "Santander",
       "currency": "USD",
-      "balance": 68435,
+      "balance": 208017,
       "status": "OK",
       "statusLabel": "Disponible"
     }
@@ -22,13 +22,13 @@
   "settlements": [
     {
       "source": "Santander USD retenido 12 días hábiles",
-      "amount": 210799,
+      "amount": 71217,
       "currency": "USD",
       "releaseDate": "12 días hábiles",
       "daysRemaining": "",
       "status": "Saldo contable retenido",
       "statusClass": "pending",
-      "notes": "Pagos internacionales Santander aún no disponibles."
+      "notes": "Saldo pendiente luego de reclasificar como disponible las valutas 31/03/2026 y 01/04/2026."
     },
     {
       "source": "NMI reserve",
@@ -42,6 +42,15 @@
     }
   ],
   "operations": [
+    {
+      "date": "2026-04-21",
+      "type": "Refresh liquidez",
+      "description": "Reclasificación de USD con valutas 31/03/2026 y 01/04/2026 desde retenido a disponible",
+      "amount": 139582,
+      "currency": "USD",
+      "account": "Santander USD",
+      "status": "Disponible"
+    },
     {
       "date": "2026-04-15",
       "type": "Saldo bancario",
@@ -107,10 +116,11 @@
     }
   ],
   "notes": [
-    "Fecha de actualización: 2026-04-16.",
-    "Liquidez total estimada: USD 424,996.06.",
-    "Cálculo: USD contable total 346,819.00 + CLP disponible convertido a USD 78,177.06 al tipo de cambio 886,09.",
-    "USD contable total = USD disponible 68,435.00 + USD retenido 278,384.00."
+    "Fecha de actualización: 2026-04-21.",
+    "Se reclasificaron USD 139.582,00 con valutas 31/03/2026 y 01/04/2026 desde retenido a disponible.",
+    "Liquidez total estimada: USD 424.996,06.",
+    "Cálculo: USD contable total 346.819,00 + CLP disponible convertido a USD 78.177,06 al tipo de cambio 886,09.",
+    "USD contable total = USD disponible 208.017,00 + USD retenido 138.802,00."
   ],
   "machine": null,
   "story": null,
