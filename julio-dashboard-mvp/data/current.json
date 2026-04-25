@@ -1,12 +1,12 @@
 {
-  "today": "2026-04-16",
+  "today": "2026-04-25",
   "organization": "ProFlow",
   "accounts": [
     {
       "name": "Santander CLP",
       "institution": "Santander",
       "currency": "CLP",
-      "balance": 69271915,
+      "balance": 52888045,
       "status": "OK",
       "statusLabel": "Disponible"
     },
@@ -42,6 +42,15 @@
     }
   ],
   "operations": [
+    {
+      "date": "2026-04-25",
+      "type": "Aprovisionamiento CLP",
+      "description": "Se resta CLP 16.383.870 por aprovisionamiento para compra de 22.600 USD",
+      "amount": 16383870,
+      "currency": "CLP",
+      "account": "Santander CLP",
+      "status": "Aprovisionado"
+    },
     {
       "date": "2026-04-21",
       "type": "Refresh liquidez",
@@ -116,10 +125,11 @@
     }
   ],
   "notes": [
-    "Fecha de actualización: 2026-04-21.",
-    "Se reclasificaron USD 139.582,00 con valutas 31/03/2026 y 01/04/2026 desde retenido a disponible.",
-    "Liquidez total estimada: USD 424.996,06.",
-    "Cálculo: USD contable total 346.819,00 + CLP disponible convertido a USD 78.177,06 al tipo de cambio 886,09.",
+    "Fecha de actualización: 2026-04-25.",
+    "Se ajustó CLP disponible restando CLP 16.383.870 por aprovisionamiento para compra de 22.600 USD.",
+    "Se mantiene la reclasificación de USD 139.582,00 con valutas 31/03/2026 y 01/04/2026 desde retenido a disponible.",
+    "Liquidez total estimada: USD 406.505,99.",
+    "Cálculo: USD contable total 346.819,00 + CLP disponible convertido a USD 59.686,99 al tipo de cambio 886,09.",
     "USD contable total = USD disponible 208.017,00 + USD retenido 138.802,00."
   ],
   "machine": null,
