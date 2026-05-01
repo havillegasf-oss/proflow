@@ -1,5 +1,5 @@
 {
-  "today": "2026-04-25",
+  "today": "2026-05-01",
   "organization": "ProFlow",
   "accounts": [
     {
@@ -14,22 +14,12 @@
       "name": "Santander USD",
       "institution": "Santander",
       "currency": "USD",
-      "balance": 208017,
+      "balance": 279234,
       "status": "OK",
       "statusLabel": "Disponible"
     }
   ],
   "settlements": [
-    {
-      "source": "Santander USD retenido 12 días hábiles",
-      "amount": 71217,
-      "currency": "USD",
-      "releaseDate": "12 días hábiles",
-      "daysRemaining": "",
-      "status": "Saldo contable retenido",
-      "statusClass": "pending",
-      "notes": "Saldo pendiente luego de reclasificar como disponible las valutas 31/03/2026 y 01/04/2026."
-    },
     {
       "source": "NMI reserve",
       "amount": 67585,
@@ -42,6 +32,15 @@
     }
   ],
   "operations": [
+    {
+      "date": "2026-05-01",
+      "type": "Liberación de saldo retenido",
+      "description": "Se reclasifican USD 71.217 desde Santander retenido a USD disponible. Solo queda retenida la reserva NMI.",
+      "amount": 71217,
+      "currency": "USD",
+      "account": "Santander USD",
+      "status": "Disponible"
+    },
     {
       "date": "2026-04-25",
       "type": "Aprovisionamiento CLP",
@@ -125,12 +124,13 @@
     }
   ],
   "notes": [
-    "Fecha de actualización: 2026-04-25.",
+    "Fecha de actualización: 2026-05-01.",
     "Se ajustó CLP disponible restando CLP 16.383.870 por aprovisionamiento para compra de 22.600 USD.",
-    "Se mantiene la reclasificación de USD 139.582,00 con valutas 31/03/2026 y 01/04/2026 desde retenido a disponible.",
+    "Se liberan USD 71.217,00 desde Santander retenido a USD disponible.",
+    "Solo queda retenida la reserva NMI por USD 67.585,00 al no tener fecha clara de liberación.",
     "Liquidez total estimada: USD 406.505,99.",
     "Cálculo: USD contable total 346.819,00 + CLP disponible convertido a USD 59.686,99 al tipo de cambio 886,09.",
-    "USD contable total = USD disponible 208.017,00 + USD retenido 138.802,00."
+    "USD contable total = USD disponible 279.234,00 + USD retenido 67.585,00."
   ],
   "machine": null,
   "story": null,

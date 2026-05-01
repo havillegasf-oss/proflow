@@ -10,6 +10,12 @@ const DEMO_USER = process.env.DASH_USER || 'julio';
 const DEMO_PASS = process.env.DASH_PASS || 'proflow2026';
 const DATA_FILE = process.env.DASH_DATA_FILE || path.join(__dirname, 'data', 'current.json');
 const AUDIT_FILE = path.join(__dirname, 'data', 'login_audit.jsonl');
+const TRACKABLE_EVENT_TYPES = new Set([
+  'dashboard_loaded',
+  'section_view',
+  'section_interaction',
+  'session_summary'
+]);
 
 const sessions = new Map();
 
@@ -121,12 +127,34 @@ function parseForm(body) {
   return Object.fromEntries(params.entries());
 }
 
+function parseJsonBody(body) {
+  if (!body || !body.trim()) return {};
+  try {
+    return JSON.parse(body);
+  } catch {
+    return {};
+  }
+}
+
 function clientIp(req) {
   const forwarded = req.headers['x-forwarded-for'];
   if (typeof forwarded === 'string' && forwarded.trim()) {
     return forwarded.split(',')[0].trim();
   }
   return req.socket?.remoteAddress || 'unknown';
+}
+
+function ensureSessionMeta(session) {
+  if (!session.analyticsSessionId) {
+    session.analyticsSessionId = crypto.randomBytes(12).toString('hex');
+  }
+  if (!session.createdAt) {
+    session.createdAt = Date.now();
+  }
+  if (!session.lastViewAuditAt) {
+    session.lastViewAuditAt = 0;
+  }
+  return session;
 }
 
 function appendAudit(event) {
@@ -207,14 +235,14 @@ function loadDashboardData() {
           kind: 'currency',
           currency: 'USD',
           value: usdAvailable,
-          detail: 'Santander USD + Chase USD'
+          detail: 'Saldo USD disponible para rotar hoy'
         },
         {
           title: 'USD retenido',
           kind: 'currency',
           currency: 'USD',
           value: usdRetained,
-          detail: 'Santander retenido + reserva NMI'
+          detail: 'Solo reserva NMI sin fecha clara'
         },
         {
           title: 'Liquidez total USD',
@@ -290,32 +318,32 @@ function dashboardPage() {
   </header>
 
   <main class="container">
-    <section id="hero-cards" class="cards-grid"></section>
+    <section id="hero-cards" class="cards-grid" data-track-section="hero_cards"></section>
 
-    <section id="machine-panel"></section>
-    <section id="story-panel"></section>
-    <section id="profitability-panel"></section>
+    <section id="machine-panel" data-track-section="machine_panel"></section>
+    <section id="story-panel" data-track-section="story_panel"></section>
+    <section id="profitability-panel" data-track-section="profitability_panel"></section>
 
-    <section class="panel two-col">
-      <div>
+    <section class="panel two-col" id="liquidity-tables-panel" data-track-section="liquidity_tables">
+      <div id="accounts-panel" data-track-section="accounts_panel">
         <div class="section-title-row">
           <h2>Cuentas</h2>
           <span id="as-of-label" class="muted"></span>
         </div>
         <div id="accounts-table"></div>
       </div>
-      <div>
+      <div id="settlements-panel" data-track-section="settlements_panel">
         <h2>Pendientes por liberar</h2>
         <div id="settlements-table"></div>
       </div>
     </section>
 
-    <section class="panel">
+    <section class="panel" id="operations-panel" data-track-section="operations_panel">
       <h2>Operaciones recientes</h2>
       <div id="operations-table"></div>
     </section>
 
-    <section class="panel">
+    <section class="panel" id="notes-panel" data-track-section="notes_panel">
       <h2>Notas operativas</h2>
       <div id="notes-list"></div>
     </section>
@@ -346,10 +374,12 @@ const server = http.createServer(async (req, res) => {
     const { username, password } = parseForm(body);
     if (username === DEMO_USER && password === DEMO_PASS) {
       const token = crypto.randomBytes(24).toString('hex');
-      sessions.set(token, { username, createdAt: Date.now(), lastViewAuditAt: 0 });
+      const analyticsSessionId = crypto.randomBytes(12).toString('hex');
+      sessions.set(token, { username, createdAt: Date.now(), lastViewAuditAt: 0, analyticsSessionId });
       appendAudit({
         type: 'login_success',
         username,
+        analyticsSessionId,
         ip: clientIp(req),
         userAgent: req.headers['user-agent'] || ''
       });
@@ -370,17 +400,41 @@ const server = http.createServer(async (req, res) => {
   }
   if (req.method === 'GET' && url.pathname === '/api/dashboard') {
     if (!requireAuth(req, res)) return;
-    const session = getSession(req);
+    const session = ensureSessionMeta(getSession(req));
     if (session && (!session.lastViewAuditAt || (Date.now() - session.lastViewAuditAt) > 300000)) {
       session.lastViewAuditAt = Date.now();
       appendAudit({
         type: 'dashboard_view',
         username: session.username,
+        analyticsSessionId: session.analyticsSessionId,
         ip: clientIp(req),
         userAgent: req.headers['user-agent'] || ''
       });
     }
     return sendJson(res, loadDashboardData());
+  }
+  if (req.method === 'POST' && url.pathname === '/api/track') {
+    if (!requireAuth(req, res)) return;
+    const session = ensureSessionMeta(getSession(req));
+    const body = await readBody(req);
+    const payload = parseJsonBody(body);
+    const type = typeof payload.type === 'string' ? payload.type : '';
+    if (!TRACKABLE_EVENT_TYPES.has(type)) {
+      return sendJson(res, { ok: false, error: 'invalid_event_type' }, 400);
+    }
+
+    appendAudit({
+      type,
+      username: session.username,
+      analyticsSessionId: session.analyticsSessionId,
+      ip: clientIp(req),
+      userAgent: req.headers['user-agent'] || '',
+      pageSessionId: typeof payload.pageSessionId === 'string' ? payload.pageSessionId : null,
+      section: typeof payload.section === 'string' ? payload.section : null,
+      details: payload && typeof payload.details === 'object' && !Array.isArray(payload.details) ? payload.details : null
+    });
+
+    return sendJson(res, { ok: true });
   }
   if (req.method === 'GET' && url.pathname === '/api/access-audit') {
     if (!requireAuth(req, res)) return;
