@@ -209,7 +209,7 @@ function loadDashboardData() {
   const clpAsUsd = fxRateUsdClp > 0 ? Number(availableByCurrency.CLP || 0) / fxRateUsdClp : 0;
   const usdAvailable = Number(availableByCurrency.USD || 0);
   const usdRetained = Number(pendingByCurrency.USD || 0);
-  const totalLiquidityUsd = clpAsUsd + usdAvailable + usdRetained;
+  const totalLiquidityUsd = clpAsUsd + usdAvailable;
 
   return {
     ...raw,
@@ -242,14 +242,15 @@ function loadDashboardData() {
           kind: 'currency',
           currency: 'USD',
           value: usdRetained,
-          detail: 'Solo reserva NMI sin fecha clara'
+          detail: 'Reserva NMI, devolución estimada a 180 días',
+          className: 'warning'
         },
         {
           title: 'Liquidez total USD',
           kind: 'currency',
           currency: 'USD',
           value: totalLiquidityUsd,
-          detail: fxRateUsdClp > 0 ? `Incluye CLP convertido a ${fxRateUsdClp.toFixed(2)}` : 'Disponible + retenido'
+          detail: fxRateUsdClp > 0 ? `Excluye NMI retenido, CLP convertido a ${fxRateUsdClp.toFixed(2)}` : 'Disponible rotativo sin retenidos'
         }
       ],
       fxRateUsdClp,

@@ -162,6 +162,25 @@ h1, h2, h3 { color: #0f172a; }
 
 .pill.ok { background: rgba(83, 209, 182, .12); color: var(--accent); }
 .pill.pending { background: rgba(255, 189, 89, .12); color: var(--warning); }
+.pill.warning { background: rgba(255, 189, 89, .22); color: #9a6400; border-color: rgba(197, 138, 18, .35); }
+
+.metric-card.warning {
+  background: linear-gradient(180deg, rgba(255, 243, 224, 0.98) 0%, rgba(255, 232, 194, 0.98) 100%);
+  border-color: rgba(197, 138, 18, .28);
+}
+
+.metric-card.warning .metric-title,
+.metric-card.warning .metric-detail {
+  color: #9a6400;
+}
+
+.metric-card.warning .metric-value {
+  color: #7a4b00;
+}
+
+.settlement-row.warning td {
+  background: rgba(255, 189, 89, .14);
+}
 
 .login-body {
   min-height: 100vh;
@@ -238,6 +257,16 @@ th, td {
 }
 
 th { color: var(--muted); font-weight: 600; }
+
+.settlement-row.warning td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.settlement-row.warning td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
 
 .notes-list {
   margin: 0;

@@ -24,11 +24,11 @@
       "source": "NMI reserve",
       "amount": 67585,
       "currency": "USD",
-      "releaseDate": "Sin fecha clara",
-      "daysRemaining": "",
-      "status": "En reserva",
-      "statusClass": "pending",
-      "notes": "Reserva NMI sin fecha clara de depósito."
+      "releaseDate": "2026-11-08",
+      "daysRemaining": 180,
+      "status": "Devuelve en 180 días",
+      "statusClass": "warning",
+      "notes": "Reserva NMI con devolución estimada en 180 días. No se considera liquidez rotativa."
     }
   ],
   "operations": [
@@ -142,15 +142,15 @@
     }
   ],
   "notes": [
+    "Reserva NMI por USD 67.585 entra a devolución estimada en 180 días y se excluye de la liquidez total rotativa.",
+    "Liquidez total rotativa estimada: USD 290.011,74.",
+    "Cálculo: USD disponible 279.234,00 + CLP disponible convertido a USD 10.777,74 al tipo de cambio 886,09.",
+    "USD retenido NMI = USD 67.585,00, fuera de liquidez rotativa.",
     "Se ajustó CLP disponible restando CLP 25.208.000 por devolución de USD 27.400 a Julio Martínez con fecha 2026-05-12.",
     "Se ajustó CLP disponible restando CLP 18.100.000 por devolución de USD 20.000 a Julio Martínez con fecha 2026-05-08.",
     "Fecha de actualización: 2026-04-29.",
     "Se ajustó CLP disponible restando CLP 16.383.870 por aprovisionamiento para compra de 22.600 USD.",
-    "Se liberan USD 71.217,00 desde Santander retenido a USD disponible.",
-    "Solo queda retenida la reserva NMI por USD 67.585,00 al no tener fecha clara de liberación.",
-    "Liquidez total estimada: USD 406.505,99.",
-    "Cálculo: USD contable total 346.819,00 + CLP disponible convertido a USD 59.686,99 al tipo de cambio 886,09.",
-    "USD contable total = USD disponible 279.234,00 + USD retenido 67.585,00."
+    "Se liberan USD 71.217,00 desde Santander retenido a USD disponible."
   ],
   "machine": null,
   "story": null,

@@ -30,7 +30,7 @@ function renderHero(data) {
   ];
 
   document.getElementById('hero-cards').innerHTML = heroCards.map((card) => `
-    <div class="card metric-card">
+    <div class="card metric-card ${card.className || ''}">
       <div class="metric-title">${card.title}</div>
       <div class="metric-value">${card.kind === 'currency' ? formatMoney(card.value, card.currency || 'CLP') : String(card.value ?? '-')}</div>
       <div class="metric-detail">${card.detail || ''}</div>
@@ -195,15 +195,18 @@ function renderSettlements(items) {
         <tr><th>Origen</th><th>Monto</th><th>Liberación</th><th>Días</th><th>Status</th></tr>
       </thead>
       <tbody>
-        ${items.map((item) => `
-          <tr>
+        ${items.map((item) => {
+          const statusClass = item.statusClass || ((item.daysRemaining ?? 1) <= 0 ? 'ok' : 'pending');
+          return `
+          <tr class="settlement-row ${statusClass}">
             <td>${item.source}</td>
             <td>${formatMoney(item.amount, item.currency || 'CLP')}</td>
             <td>${item.releaseDate}</td>
             <td>${item.daysRemaining ?? ''}</td>
-            <td><span class="pill ${item.statusClass || ((item.daysRemaining ?? 1) <= 0 ? 'ok' : 'pending')}">${item.status}</span></td>
+            <td><span class="pill ${statusClass}">${item.status}</span></td>
           </tr>
-        `).join('')}
+        `;
+        }).join('')}
       </tbody>
     </table>
   `;
