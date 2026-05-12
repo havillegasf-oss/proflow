@@ -6,7 +6,7 @@
       "name": "Santander CLP",
       "institution": "Santander",
       "currency": "CLP",
-      "balance": 34788045,
+      "balance": 9550045,
       "status": "OK",
       "statusLabel": "Disponible"
     },
@@ -32,6 +32,15 @@
     }
   ],
   "operations": [
+    {
+      "date": "2026-05-12",
+      "type": "Devolución a inversionista",
+      "description": "Devolución de USD 27.400 a Julio Martínez. Se descuenta contravalor de CLP 25.208.000 del disponible.",
+      "amount": 27400,
+      "currency": "USD",
+      "account": "Julio Martínez",
+      "status": "Devuelto"
+    },
     {
       "date": "2026-05-08",
       "type": "Devolución a inversionista",
@@ -133,6 +142,7 @@
     }
   ],
   "notes": [
+    "Se ajustó CLP disponible restando CLP 25.208.000 por devolución de USD 27.400 a Julio Martínez con fecha 2026-05-12.",
     "Se ajustó CLP disponible restando CLP 18.100.000 por devolución de USD 20.000 a Julio Martínez con fecha 2026-05-08.",
     "Fecha de actualización: 2026-04-29.",
     "Se ajustó CLP disponible restando CLP 16.383.870 por aprovisionamiento para compra de 22.600 USD.",
