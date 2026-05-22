@@ -61,12 +61,12 @@
     },
     {
       "date": "2026-04-25",
-      "type": "Aprovisionamiento CLP",
-      "description": "Se resta CLP 16.383.870 por aprovisionamiento para compra de 22.600 USD",
-      "amount": 16383870,
-      "currency": "CLP",
-      "account": "Santander CLP",
-      "status": "Aprovisionado"
+      "type": "Devolución e interés a inversionista",
+      "description": "Se reconoce movimiento por USD 22.600 correspondiente a devolución de capital e interés al inversionista.",
+      "amount": 22600,
+      "currency": "USD",
+      "account": "Inversionista",
+      "status": "Reconocido"
     },
     {
       "date": "2026-04-21",
@@ -149,7 +149,7 @@
     "Se ajustó CLP disponible restando CLP 25.208.000 por devolución de USD 27.400 a Julio Martínez con fecha 2026-05-12.",
     "Se ajustó CLP disponible restando CLP 18.100.000 por devolución de USD 20.000 a Julio Martínez con fecha 2026-05-08.",
     "Fecha de actualización: 2026-04-29.",
-    "Se ajustó CLP disponible restando CLP 16.383.870 por aprovisionamiento para compra de 22.600 USD.",
+    "El movimiento del 2026-04-25 se reconoce como devolución e interés al inversionista por USD 22.600.",
     "Se liberan USD 71.217,00 desde Santander retenido a USD disponible."
   ],
   "machine": null,
