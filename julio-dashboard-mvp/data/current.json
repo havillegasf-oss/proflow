@@ -1,12 +1,12 @@
 {
-  "today": "2026-05-28",
+  "today": "2026-06-02",
   "organization": "ProFlow",
   "accounts": [
     {
       "name": "Santander CLP",
       "institution": "Santander",
       "currency": "CLP",
-      "balance": 13507045,
+      "balance": 6120045,
       "status": "OK",
       "statusLabel": "Disponible"
     },
@@ -32,6 +32,15 @@
     }
   ],
   "operations": [
+    {
+      "date": "2026-06-02",
+      "type": "Aprovisionamiento compra de cupos",
+      "description": "Aprovisionamiento para procesamiento de Compra de Cupos por monto de USD 10.000 con tasa de descuento del 17% al valor del dólar. Se descuenta CLP 7.387.000 del saldo disponible.",
+      "amount": 7387000,
+      "currency": "CLP",
+      "account": "Santander CLP",
+      "status": "Aprovisionado"
+    },
     {
       "date": "2026-05-28",
       "type": "Venta USD a Santander",
@@ -179,16 +188,17 @@
   ],
   "notes": [
     "Reserva NMI por USD 67.585 entra a devolución estimada en 180 días y se excluye de la liquidez total rotativa.",
-    "Liquidez total rotativa estimada: USD 259.477,42.",
-    "Cálculo: USD disponible 244.234,00 + CLP disponible convertido a USD 15.243,42 al tipo de cambio 886,09.",
+    "Liquidez total rotativa estimada: USD 251.140,80.",
+    "Cálculo: USD disponible 244.234,00 + CLP disponible convertido a USD 6.906,80 al tipo de cambio 886,09.",
     "USD retenido NMI = USD 67.585,00, fuera de liquidez rotativa.",
+    "Se descuenta CLP 7.387.000 por aprovisionamiento para procesamiento de Compra de Cupos por USD 10.000 con tasa de descuento del 17% al valor del dólar, con fecha 2026-06-02.",
     "Se abonaron CLP 13.125.000 por venta de USD 15.000 a Santander al tipo de cambio 875 con fecha 2026-05-28.",
     "Se retiraron CLP 12.308.000 para pago de intereses Julio Martinez, equivalente a USD 13.600 al tipo de cambio 905 con fecha 2026-05-28.",
     "Se abonaron CLP 17.720.000 por venta de USD 20.000 a Santander al tipo de cambio 886 con fecha 2026-05-22.",
     "Se ajustó CLP disponible restando CLP 14.580.000 por devolución de USD 16.200 a Julio Martínez con fecha 2026-05-22.",
     "Se ajustó CLP disponible restando CLP 25.208.000 por devolución de USD 27.400 a Julio Martínez con fecha 2026-05-12.",
     "Se ajustó CLP disponible restando CLP 18.100.000 por devolución de USD 20.000 a Julio Martínez con fecha 2026-05-08.",
-    "Fecha de actualización: 2026-05-28.",
+    "Fecha de actualización: 2026-06-02.",
     "El movimiento del 2026-04-25 se reconoce como devolución e interés al inversionista por USD 22.600.",
     "Se liberan USD 71.217,00 desde Santander retenido a USD disponible."
   ],
