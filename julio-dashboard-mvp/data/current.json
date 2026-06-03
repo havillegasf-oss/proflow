@@ -6,7 +6,7 @@
       "name": "Santander CLP",
       "institution": "Santander",
       "currency": "CLP",
-      "balance": 6120045,
+      "balance": 33330045,
       "status": "OK",
       "statusLabel": "Disponible"
     },
@@ -14,7 +14,7 @@
       "name": "Santander USD",
       "institution": "Santander",
       "currency": "USD",
-      "balance": 244234,
+      "balance": 214234,
       "status": "OK",
       "statusLabel": "Disponible"
     }
@@ -40,6 +40,15 @@
       "currency": "CLP",
       "account": "Santander CLP",
       "status": "Aprovisionado"
+    },
+    {
+      "date": "2026-06-02",
+      "type": "Venta USD a Santander",
+      "description": "Venta de USD 30.000 a Santander al tipo 907, abonando CLP 27.210.000 al saldo en pesos.",
+      "amount": 30000,
+      "currency": "USD",
+      "account": "Santander USD / Santander CLP",
+      "status": "Convertido a CLP"
     },
     {
       "date": "2026-05-28",
@@ -188,9 +197,10 @@
   ],
   "notes": [
     "Reserva NMI por USD 67.585 entra a devolución estimada en 180 días y se excluye de la liquidez total rotativa.",
-    "Liquidez total rotativa estimada: USD 251.140,80.",
-    "Cálculo: USD disponible 244.234,00 + CLP disponible convertido a USD 6.906,80 al tipo de cambio 886,09.",
+    "Liquidez total rotativa estimada: USD 251.848,74.",
+    "Cálculo: USD disponible 214.234,00 + CLP disponible convertido a USD 37.614,74 al tipo de cambio 886,09.",
     "USD retenido NMI = USD 67.585,00, fuera de liquidez rotativa.",
+    "Se abonaron CLP 27.210.000 por venta de USD 30.000 a Santander al tipo de cambio 907 con fecha 2026-06-02.",
     "Se descuenta CLP 7.387.000 por aprovisionamiento para procesamiento de Compra de Cupos por USD 10.000 con tasa de descuento del 17% al valor del dólar, con fecha 2026-06-02.",
     "Se abonaron CLP 13.125.000 por venta de USD 15.000 a Santander al tipo de cambio 875 con fecha 2026-05-28.",
     "Se retiraron CLP 12.308.000 para pago de intereses Julio Martinez, equivalente a USD 13.600 al tipo de cambio 905 con fecha 2026-05-28.",
